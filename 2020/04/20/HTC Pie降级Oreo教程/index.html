@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>HTC Pie降级Oreo教程 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HTC Pie降级Oreo教程​    前不久入手了一款HTC U11 Plus的港版工程机，由于携带了大量的404全家桶，墙内体验非常糟糕，于是想着刷个国行系统，但是HTC社区倒了😭，这台港版系统是9.0的，国行RUU找不到比这太机子还高的版本号了，无奈只能先降级+刷国行RUU。 ​    一般降级操作就是手机连接电脑打开cmd运行adb pull &#x2F;dev&#x2F;block&#x2F;sde1得到sde1这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTC Pie降级Oreo教程">
+<meta property="og:url" content="http://yoursite.com/2020/04/20/HTC%20Pie%E9%99%8D%E7%BA%A7Oreo%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="HTC Pie降级Oreo教程​    前不久入手了一款HTC U11 Plus的港版工程机，由于携带了大量的404全家桶，墙内体验非常糟糕，于是想着刷个国行系统，但是HTC社区倒了😭，这台港版系统是9.0的，国行RUU找不到比这太机子还高的版本号了，无奈只能先降级+刷国行RUU。 ​    一般降级操作就是手机连接电脑打开cmd运行adb pull &#x2F;dev&#x2F;block&#x2F;sde1得到sde1这">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-20T04:32:37.264Z">
+<meta property="article:modified_time" content="2020-04-20T09:14:15.587Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-HTC Pie降级Oreo教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/20/HTC%20Pie%E9%99%8D%E7%BA%A7Oreo%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2020-04-20T04:32:37.264Z" itemprop="datePublished">2020-04-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTC Pie降级Oreo教程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="HTC-Pie降级Oreo教程"><a href="#HTC-Pie降级Oreo教程" class="headerlink" title="HTC Pie降级Oreo教程"></a>HTC Pie降级Oreo教程</h1><p>​    前不久入手了一款HTC U11 Plus的港版工程机，由于携带了大量的404全家桶，墙内体验非常糟糕，于是想着刷个国行系统，但是HTC社区倒了😭，这台港版系统是9.0的，国行RUU找不到比这太机子还高的版本号了，无奈只能先降级+刷国行RUU。</p>
+<p>​    一般降级操作就是手机连接电脑打开cmd运行<code>adb pull /dev/block/sde1</code>得到sde1这个文件，用文本编辑器打开后可以看到一行数字，也就是当前的版本号，只要把它改成要刷入的RUU相同或者更低的版本就行了，然后再用cmd 运行<code>adb push sde1 /dev/block/</code>重新把改好的sde1文件放回，进入Download模式，会自动读取对应机器的型号名的Zip文件，按音量+键即可开始自动刷写。</p>
+<p>​    可是从Pie开始这个方法就生效了，我改完CID，MID之后，直接刷国行RUU报了个错误，于是在xda找到了大佬的操作，并分享给大家。这个方法是通用的，只要是HTC Pie的系统降级都可以用。</p>
+<h3 id="一-开始前准备："><a href="#一-开始前准备：" class="headerlink" title="一.开始前准备："></a>一.开始前准备：</h3><ol>
+<li>HTC系列手机，系统版本Pie</li>
+<li>确保手机已Soff</li>
+<li>电脑已正确安装驱动</li>
+<li>对应Oreo的RUU包</li>
+<li>Android platform tools</li>
+<li>第三方Recovery</li>
+</ol>
+<h3 id="二-安装驱动"><a href="#二-安装驱动" class="headerlink" title="二.安装驱动"></a>二.安装驱动</h3><p>​    安装驱动软件,在Android platform tools里打开cmd窗口,输入<code>adb devices</code>看到设备号就代表驱动已正确安装。</p>
+<h3 id="三-刷入第三方Recovery"><a href="#三-刷入第三方Recovery" class="headerlink" title="三.刷入第三方Recovery"></a>三.刷入第三方Recovery</h3><p>​    可以去twrp官网下载对应机器的recovery,或者用其他人修改的一些recovery,在上一步的基础上cmd运行<code>adb reboot to download</code>重启到Download模式后在运行<code>fastboot falsh recovery ${recovery.img}</code>这里recovery.img代表绝对路径,也可以直接把recovery拖进cmd窗口。</p>
+<h3 id="四-擦除版本信息"><a href="#四-擦除版本信息" class="headerlink" title="四.擦除版本信息"></a>四.擦除版本信息</h3><p>​    进入recovery后cmd运行<code>adb shell dd if=/dev/zero of=/dev/block/bootdevice/by-name/misc bs=1 seek=2208 count=16</code>擦除版本信息,重启进入Download模式，输入<code>fastboot getvar all</code>可查看手机的所有信息，其中关于版本号的应该为空。</p>
+<h3 id="五-解密RUU"><a href="#五-解密RUU" class="headerlink" title="五.解密RUU"></a>五.解密RUU</h3><p>​    运行RUU_Decrypt_Tool.exe,把RUU拖在上面,他会自动打开cmd窗口选择Y/N的时候一路默认直接回车即可,然后就是等待解压的过程,最后会生成一个OUT_设备名_版本号的文件夹。</p>
+<h3 id="六-降级刷RUU"><a href="#六-降级刷RUU" class="headerlink" title="六.降级刷RUU"></a>六.降级刷RUU</h3><p>​    安装BatchTool.exe,把要刷入的RUU包改名为rom.zip并放入Batch的默认目录Android/com文件夹下,从上面解密的OUT文件夹中找到firmware/hoss_signed.img,然后手机进入bootloader模式,一定要在Android/com目录下打开cmd运行<code>htc_fastboot flash hosd ${hosd_signed.img}</code>, 等待刷入完成，再输入<code>htc_fastboot oem rebootRUU</code>,重启到RUU模式再输入<code>htc_fastboot flash zip rom.zip</code>等待刷写完成重启,至此完成降级操作。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/20/HTC%20Pie%E9%99%8D%E7%BA%A7Oreo%E6%95%99%E7%A8%8B/" data-id="ck98a606s0001sww3bhzh8ue1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/20/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/20/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/20/HTC%20Pie%E9%99%8D%E7%BA%A7Oreo%E6%95%99%E7%A8%8B/">HTC Pie降级Oreo教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
