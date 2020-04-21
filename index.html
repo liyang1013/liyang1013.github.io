@@ -230,19 +230,19 @@
 
 
   
-    <article id="post-搭建NAS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Linux宝塔面板配置与优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/%E6%90%AD%E5%BB%BANAS/">搭建NAS</a>
+      <a class="article-title" href="/2020/04/20/Linux%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BC%98%E5%8C%96/">Linux宝塔面板配置与优化</a>
     </h1>
   
 
         
-        <a href="/2020/04/20/%E6%90%AD%E5%BB%BANAS/" class="archive-article-date">
+        <a href="/2020/04/20/Linux%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BC%98%E5%8C%96/" class="archive-article-date">
   	<time datetime="2020-04-20T10:10:01.147Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
 </a>
         
@@ -250,7 +250,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>​        最近入手了一个惠普T610，一百多的价格做个NAS还是很香的，主要是基于NextCloud，Aria2+AriaNG实现不限流量、离线BT下载及在线播放等功能。</p>
+        <pre><code>宝塔 Linux 面板是一款 Linux 平台使用的服务器管理软件，其基于 Python 语言开发。目前支持比较常见的 CentOS / Debian / Ubuntu 等操作系统（推荐使用 CentOS 系统） ，可一键配置安装 nginx、apache、php、mysql、pureftpd、phpmyadmin 等软件，本文主要介绍服务器以及宝塔面板配置与优化。</code></pre><p><strong>安装要求：</strong></p>
+<p>内存：512M以上，推荐768M以上（纯面板约占系统60M内存）</p>
+<p>硬盘：100M以上可用硬盘空间（纯面板约占20M磁盘空间）</p>
+<p>系统：CentOS 7.1+ (Ubuntu16.04+.、Debian9.0+)，<strong>确保是干净的操作系统，</strong>没有安装过其它环境带的Apache/Nginx/php/MySQL<strong>（已有环境不可安装）</strong></p>
+<h4 id="CentOS-安装命令："><a href="#CentOS-安装命令：" class="headerlink" title="CentOS 安装命令："></a>CentOS 安装命令：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install_6.0.sh &amp;&amp; sh install.sh</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​        安装完成之后登入宝塔面板，会提示选择安装的Web环境，看个人需求选择即可,也可以进入软件商店安装其他软件</p>
+<p><img src="/img/image-20200421092647516.png" alt="image-20200421092647516"></p>
+<h4 id="开启TCP加速"><a href="#开启TCP加速" class="headerlink" title="开启TCP加速"></a>开启TCP加速</h4><p>Google BBR:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="添加SWAP虚拟缓存"><a href="#添加SWAP虚拟缓存" class="headerlink" title="添加SWAP虚拟缓存"></a>添加SWAP虚拟缓存</h4><p>先安装Linux工具箱在设置SWAP</p>
+<p><img src="/img/image-20200421151228871.png" alt="image-20200421151228871"></p>
+<h4 id="安装PHP拓展"><a href="#安装PHP拓展" class="headerlink" title="安装PHP拓展"></a>安装PHP拓展</h4><p>安装<strong>opcache、memcached、imagemagick、fileinfo、exif</strong>等拓展</p>
+<p><img src="/img/image-20200421155619605.png" alt="image-20200421155619605"></p>
 
       
 
@@ -263,7 +281,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/%E6%90%AD%E5%BB%BANAS/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/04/20/Linux%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BC%98%E5%8C%96/">展开全文 >></a>
         </p>
       
 
@@ -313,7 +331,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>前不久入手了一款HTC U11 Plus的港版工程机，由于携带了大量的404全家桶，墙内体验非常糟糕，于是想着刷个国行系统，但是HTC社区倒了😭，这台港版系统是9.0的，国行RUU找不到比这太机子还高的版本号了，无奈只能先降级+刷国行RUU。</code></pre><p>​        一般降级操作就是手机连接电脑打开cmd运行<code>adb pull /dev/block/sde1</code>得到sde1这个文件，用文本编辑器打开后可以看到一行数字，也就是当前的版本号，只要把它改成要刷入的RUU相同或者更低的版本就行了，然后再用cmd 运行<code>adb push sde1 /dev/block/</code>重新把改好的sde1文件放回，进入Download模式，会自动读取对应机器的型号名的Zip文件，按音量+键即可开始自动刷写。</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​        前不久入手了一款HTC U11 Plus的港版工程机，由于携带了大量的404全家桶，墙内体验非常糟糕，于是想着刷个国行系统，但是HTC社区倒了😭，这台港版系统是9.0的，国行RUU找不到比这太机子还高的版本号了，无奈只能先降级+刷国行RUU。</p>
+<p>​        一般降级操作就是手机连接电脑打开cmd运行<code>adb pull /dev/block/sde1</code>得到sde1这个文件，用文本编辑器打开后可以看到一行数字，也就是当前的版本号，只要把它改成要刷入的RUU相同或者更低的版本就行了，然后再用cmd 运行<code>adb push sde1 /dev/block/</code>重新把改好的sde1文件放回，进入Download模式，会自动读取对应机器的型号名的Zip文件，按音量+键即可开始自动刷写。</p>
 <p>​        可是从Pie开始这个方法就生效了，我改完CID，MID之后，直接刷国行RUU报了个错误，于是在xda找到了大佬的操作，并分享给大家。这个方法是通用的，只要是HTC Pie的系统降级都可以用。</p>
 <h3 id="一-开始前准备："><a href="#一-开始前准备：" class="headerlink" title="一.开始前准备："></a>一.开始前准备：</h3><p>1、HTC系列手机，系统版本Pie</p>
 <p>2、确保手机已soff</p>

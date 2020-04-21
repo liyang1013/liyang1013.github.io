@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>HTC Pie降级Oreo教程 | Li Yang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前不久入手了一款HTC U11 Plus的港版工程机，由于携带了大量的404全家桶，墙内体验非常糟糕，于是想着刷个国行系统，但是HTC社区倒了😭，这台港版系统是9.0的，国行RUU找不到比这太机子还高的版本号了，无奈只能先降级+刷国行RUU。​        一般降级操作就是手机连接电脑打开cmd运行adb pull &#x2F;dev&#x2F;block&#x2F;sde1得到sde1这个文件，用文本编辑器打开后可以看到">
+  <meta name="description" content="前言​        前不久入手了一款HTC U11 Plus的港版工程机，由于携带了大量的404全家桶，墙内体验非常糟糕，于是想着刷个国行系统，但是HTC社区倒了😭，这台港版系统是9.0的，国行RUU找不到比这太机子还高的版本号了，无奈只能先降级+刷国行RUU。 ​        一般降级操作就是手机连接电脑打开cmd运行adb pull &#x2F;dev&#x2F;block&#x2F;sde1得到sde1这个文件，用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTC Pie降级Oreo教程">
 <meta property="og:url" content="http://yoursite.com/2020/04/20/HTC%20Pie%E9%99%8D%E7%BA%A7Oreo%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Li Yang&#39;s Blog">
-<meta property="og:description" content="前不久入手了一款HTC U11 Plus的港版工程机，由于携带了大量的404全家桶，墙内体验非常糟糕，于是想着刷个国行系统，但是HTC社区倒了😭，这台港版系统是9.0的，国行RUU找不到比这太机子还高的版本号了，无奈只能先降级+刷国行RUU。​        一般降级操作就是手机连接电脑打开cmd运行adb pull &#x2F;dev&#x2F;block&#x2F;sde1得到sde1这个文件，用文本编辑器打开后可以看到">
+<meta property="og:description" content="前言​        前不久入手了一款HTC U11 Plus的港版工程机，由于携带了大量的404全家桶，墙内体验非常糟糕，于是想着刷个国行系统，但是HTC社区倒了😭，这台港版系统是9.0的，国行RUU找不到比这太机子还高的版本号了，无奈只能先降级+刷国行RUU。 ​        一般降级操作就是手机连接电脑打开cmd运行adb pull &#x2F;dev&#x2F;block&#x2F;sde1得到sde1这个文件，用">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-20T04:32:37.264Z">
-<meta property="article:modified_time" content="2020-04-20T15:59:44.672Z">
+<meta property="article:modified_time" content="2020-04-21T00:58:52.048Z">
 <meta property="article:author" content="Li Yang">
 <meta name="twitter:card" content="summary">
   
@@ -166,7 +166,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>前不久入手了一款HTC U11 Plus的港版工程机，由于携带了大量的404全家桶，墙内体验非常糟糕，于是想着刷个国行系统，但是HTC社区倒了😭，这台港版系统是9.0的，国行RUU找不到比这太机子还高的版本号了，无奈只能先降级+刷国行RUU。</code></pre><p>​        一般降级操作就是手机连接电脑打开cmd运行<code>adb pull /dev/block/sde1</code>得到sde1这个文件，用文本编辑器打开后可以看到一行数字，也就是当前的版本号，只要把它改成要刷入的RUU相同或者更低的版本就行了，然后再用cmd 运行<code>adb push sde1 /dev/block/</code>重新把改好的sde1文件放回，进入Download模式，会自动读取对应机器的型号名的Zip文件，按音量+键即可开始自动刷写。</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​        前不久入手了一款HTC U11 Plus的港版工程机，由于携带了大量的404全家桶，墙内体验非常糟糕，于是想着刷个国行系统，但是HTC社区倒了😭，这台港版系统是9.0的，国行RUU找不到比这太机子还高的版本号了，无奈只能先降级+刷国行RUU。</p>
+<p>​        一般降级操作就是手机连接电脑打开cmd运行<code>adb pull /dev/block/sde1</code>得到sde1这个文件，用文本编辑器打开后可以看到一行数字，也就是当前的版本号，只要把它改成要刷入的RUU相同或者更低的版本就行了，然后再用cmd 运行<code>adb push sde1 /dev/block/</code>重新把改好的sde1文件放回，进入Download模式，会自动读取对应机器的型号名的Zip文件，按音量+键即可开始自动刷写。</p>
 <p>​        可是从Pie开始这个方法就生效了，我改完CID，MID之后，直接刷国行RUU报了个错误，于是在xda找到了大佬的操作，并分享给大家。这个方法是通用的，只要是HTC Pie的系统降级都可以用。</p>
 <h3 id="一-开始前准备："><a href="#一-开始前准备：" class="headerlink" title="一.开始前准备："></a>一.开始前准备：</h3><p>1、HTC系列手机，系统版本Pie</p>
 <p>2、确保手机已soff</p>
@@ -253,11 +254,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/04/20/%E6%90%AD%E5%BB%BANAS/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/04/20/Linux%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BC%98%E5%8C%96/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          搭建NAS
+          Linux宝塔面板配置与优化
         
       </div>
     </a>
