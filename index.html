@@ -226,7 +226,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>本文主要介绍在LAMP环境下安装NextCloud，NextCloud 是国外一个开源的云盘应用，用户可以免费下载安装在服务器等终端，随时管理自己的数据。</code></pre><h3 id="1-搭建LAMP环境"><a href="#1-搭建LAMP环境" class="headerlink" title="1.搭建LAMP环境"></a>1.搭建LAMP环境</h3><p>​        具体环境搭建可以用宝塔，也可以手动安装，具体就不赘述了，关于宝塔详见博客内其他文章。</p>
+        <p>本文主要介绍在LAMP环境下安装NextCloud，NextCloud是国外一个开源的云盘应用，用户可以免费下载安装在服务器等终端，随时管理自己的数据。</p>
+<hr>
+<h3 id="1-搭建LAMP环境"><a href="#1-搭建LAMP环境" class="headerlink" title="1.搭建LAMP环境"></a>1.搭建LAMP环境</h3><p>​        具体环境搭建可以用宝塔，也可以手动安装，具体就不赘述了，关于宝塔详见博客内其他文章。</p>
 <h3 id="2-创建站点，安装NextCloud"><a href="#2-创建站点，安装NextCloud" class="headerlink" title="2.创建站点，安装NextCloud"></a>2.创建站点，安装NextCloud</h3><p>​        如果是用宝塔面板搭建的LAMP环境，可以在设置完成后添加站点，将官网下载的NextCloud文件压缩包上传至网站根目录，解压。</p>
 <p>​        之后输入绑定的域名或者IP地址进入，其中要注意的是NextCloud是否支持安装版本的PHP，如果不兼容会有提示，按这提示更改版本就行了。还有一些错误是文件的权限问题，嫌麻烦直接777就完事了。没错误就可以直接创建数据库和创建管理员账号，点击安装完成即可进入主界面。</p>
 <h3 id="3-挂载外置硬盘"><a href="#3-挂载外置硬盘" class="headerlink" title="3.挂载外置硬盘"></a>3.挂载外置硬盘</h3><p>​        NextCloud默认是不开启支持外置存储的，需要自己点击右上角，找到应用，在最下面有 External storage support，点击启用后就可以在主界面看到。</p>
@@ -358,88 +360,6 @@
 
 
   
-    <article id="post-Linux宝塔面板配置与优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/Linux%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BC%98%E5%8C%96/">Linux宝塔面板配置与优化</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/20/Linux%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BC%98%E5%8C%96/" class="archive-article-date">
-  	<time datetime="2020-04-20T10:10:01.147Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="宝塔面板"><a href="#宝塔面板" class="headerlink" title="宝塔面板"></a>宝塔面板</h3><p>​            宝塔 Linux 面板是一款 Linux 平台使用的服务器管理软件，其基于 Python 语言开发。目前支持比较常见的 CentOS / Debian / Ubuntu 等操作系统（推荐使用 CentOS 系统） ，可一键配置安装 nginx、apache、php、mysql、pureftpd、phpmyadmin 等软件，本文主要介绍服务器以及宝塔面板配置与优化。</p>
-<p><strong>安装要求：</strong></p>
-<p>内存：512M以上，推荐768M以上（纯面板约占系统60M内存）</p>
-<p>硬盘：100M以上可用硬盘空间（纯面板约占20M磁盘空间）</p>
-<p>系统：CentOS 7.1+ (Ubuntu16.04+.、Debian9.0+)，<strong>确保是干净的操作系统，</strong>没有安装过其它环境带的Apache/Nginx/php/MySQL<strong>（已有环境不可安装）</strong></p>
-<h4 id="CentOS-安装命令："><a href="#CentOS-安装命令：" class="headerlink" title="CentOS 安装命令："></a>CentOS 安装命令：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install_6.0.sh &amp;&amp; sh install.sh</span><br></pre></td></tr></table></figure>
-
-
-
-<p>​        安装完成之后登入宝塔面板，默认端口是8888还有账号密码等后期可以自己更改，会提示选择安装的Web环境，看个人需求选择即可,也可以进入软件商店安装其他软件</p>
-<p><img src="/img/image-20200421092647516.png" alt="image-20200421092647516"></p>
-<h4 id="开启TCP加速"><a href="#开启TCP加速" class="headerlink" title="开启TCP加速"></a>开启TCP加速</h4><p>Google BBR:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="添加SWAP虚拟缓存"><a href="#添加SWAP虚拟缓存" class="headerlink" title="添加SWAP虚拟缓存"></a>添加SWAP虚拟缓存</h4><p>先安装Linux工具箱在设置SWAP</p>
-<p><img src="/img/image-20200421151228871.png" alt="image-20200421151228871"></p>
-<h4 id="安装PHP拓展"><a href="#安装PHP拓展" class="headerlink" title="安装PHP拓展"></a>安装PHP拓展</h4><p>安装<strong>opcache、memcached、imagemagick、fileinfo、exif</strong>等拓展按需添加</p>
-<p><img src="/img/image-20200421155619605.png" alt="image-20200421155619605"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/Linux%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BC%98%E5%8C%96/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-HTC Pie降级Oreo教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -465,12 +385,12 @@
 <p>​        可是从Pie开始这个方法就生效了，我改完CID，MID之后，直接刷国行RUU报了个错误，于是在xda找到了大佬的操作，并分享给大家。这个方法是通用的，只要是HTC Pie的系统降级都可以用。</p>
 <h3 id="一-开始前准备："><a href="#一-开始前准备：" class="headerlink" title="一.开始前准备："></a>一.开始前准备：</h3><p>1、HTC系列手机，系统版本Pie</p>
 <p>2、确保手机已soff</p>
-<p>3、电脑已正确安装<a href="https://1drv.ms/u/s!AuG8vc-HIAxigo0RUotGiCtooW-3-Q?e=xYgMqv" target="_blank" rel="noopener">驱动</a></p>
+<p>3、电脑已正确安装驱动</p>
 <p>4、对应Oreo的RUU包</p>
-<p>5、<a href="https://1drv.ms/u/s!AuG8vc-HIAxigo0Py0ctu3JTxOq1YA?e=9rfZ1t" target="_blank" rel="noopener">Android platform tools</a></p>
-<p>6、第三方<a href="https://1drv.ms/u/s!AuG8vc-HIAxigo0TInrNN3l_kzgX7A?e=oWmnLl" target="_blank" rel="noopener">Recovery</a></p>
+<p>5、<a href="https://developer.android.google.cn/studio/releases/platform-tools" target="_blank" rel="noopener">Android platform tools</a></p>
+<p>6、第三方<a href="https://forum.xda-developers.com/htc-u11/development/unofficial-htc-u11-twrp-recovery-t3706264" target="_blank" rel="noopener">Recovery</a></p>
 <p>7、<a href="https://1drv.ms/u/s!AuG8vc-HIAxigo0Qot2RVVZcOk-zoA?e=GNfEzk" target="_blank" rel="noopener">RUU解密工具</a></p>
-<p>8、<a href="https://1drv.ms/u/s!AuG8vc-HIAxigo0S6Kc0hJ7HA7XJJw?e=cT9wNx" target="_blank" rel="noopener">Batch刷机工具</a></p>
+<p>8、<a href="https://androidfilehost.com/?fid=673791459329065690" target="_blank" rel="noopener">Batch刷机工具</a></p>
 <h3 id="二-安装驱动"><a href="#二-安装驱动" class="headerlink" title="二.安装驱动"></a>二.安装驱动</h3><p>​        安装驱动软件,在Android platform tools里打开cmd窗口,输入<code>adb devices</code>看到设备号就代表驱动已正确安装。</p>
 <h3 id="三-刷入第三方Recovery"><a href="#三-刷入第三方Recovery" class="headerlink" title="三.刷入第三方Recovery"></a>三.刷入第三方Recovery</h3><p>​        可以去twrp官网下载对应机器的recovery,或者用其他人修改的一些recovery,在上一步的基础上cmd运行<code>adb reboot to download</code>重启到Download模式后在运行<code>fastboot falsh recovery ${recovery.img}</code>这里recovery.img代表绝对路径,也可以直接把recovery拖进cmd窗口。</p>
 <h3 id="四-擦除版本信息"><a href="#四-擦除版本信息" class="headerlink" title="四.擦除版本信息"></a>四.擦除版本信息</h3><p>​        进入recovery后cmd运行<code>adb shell dd if=/dev/zero of=/dev/block/bootdevice/by-name/misc bs=1 seek=2208 count=16</code>擦除版本信息,重启进入Download模式，输入<code>fastboot getvar all</code>可查看手机的所有信息，其中关于版本号的应该为空。</p>
