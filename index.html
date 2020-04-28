@@ -144,81 +144,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-CentOS 7一键安装CCAA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-LNMP环境下NextCloud的安装与配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/24/CentOS%207%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85CCAA/">CentOS 7一键安装CCAA</a>
+      <a class="article-title" href="/2020/04/21/LNMP%E7%8E%AF%E5%A2%83%E4%B8%8BNextCloud%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">LNMP环境下NextCloud的安装与配置</a>
     </h1>
   
 
         
-        <a href="/2020/04/24/CentOS%207%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85CCAA/" class="archive-article-date">
-  	<time datetime="2020-04-24T12:50:32.647Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/24/CentOS%207%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85CCAA/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Nextcloud" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/21/Nextcloud/">Nextcloud</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/21/Nextcloud/" class="archive-article-date">
+        <a href="/2020/04/21/LNMP%E7%8E%AF%E5%A2%83%E4%B8%8BNextCloud%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" class="archive-article-date">
   	<time datetime="2020-04-21T08:14:39.822Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-21</time>
 </a>
         
@@ -226,12 +164,79 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文主要介绍在LAMP环境下安装NextCloud，NextCloud是国外一个开源的云盘应用，用户可以免费下载安装在服务器等终端，随时管理自己的数据。</p>
+        <h3 id="NextCloud"><a href="#NextCloud" class="headerlink" title="NextCloud"></a>NextCloud</h3><p>​        本文主要介绍在LNMP环境下安装NextCloud，NextCloud是国外一个开源的云盘应用，用户可以免费下载安装在服务器等终端，随时管理自己的数据。</p>
 <hr>
-<h3 id="1-搭建LAMP环境"><a href="#1-搭建LAMP环境" class="headerlink" title="1.搭建LAMP环境"></a>1.搭建LAMP环境</h3><p>​        具体环境搭建可以用宝塔，也可以手动安装，具体就不赘述了，关于宝塔详见博客内其他文章。</p>
-<h3 id="2-创建站点，安装NextCloud"><a href="#2-创建站点，安装NextCloud" class="headerlink" title="2.创建站点，安装NextCloud"></a>2.创建站点，安装NextCloud</h3><p>​        如果是用宝塔面板搭建的LAMP环境，可以在设置完成后添加站点，将官网下载的NextCloud文件压缩包上传至网站根目录，解压。</p>
-<p>​        之后输入绑定的域名或者IP地址进入，其中要注意的是NextCloud是否支持安装版本的PHP，如果不兼容会有提示，按这提示更改版本就行了。还有一些错误是文件的权限问题，嫌麻烦直接777就完事了。没错误就可以直接创建数据库和创建管理员账号，点击安装完成即可进入主界面。</p>
-<h3 id="3-挂载外置硬盘"><a href="#3-挂载外置硬盘" class="headerlink" title="3.挂载外置硬盘"></a>3.挂载外置硬盘</h3><p>​        NextCloud默认是不开启支持外置存储的，需要自己点击右上角，找到应用，在最下面有 External storage support，点击启用后就可以在主界面看到。</p>
+<h5 id="1-关闭SeLinux"><a href="#1-关闭SeLinux" class="headerlink" title="1.关闭SeLinux"></a>1.关闭SeLinux</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim  /etc/sysconfig/selinux</span><br></pre></td></tr></table></figure>
+
+<p>​        把SELINUX=enforcing改为disabled。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELINUX=disabled</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-开放防火墙端口"><a href="#2-开放防火墙端口" class="headerlink" title="2.开放防火墙端口"></a>2.开放防火墙端口</h5><p>​        这里我需要80(HTTP)，443(HTTPS)，3306(MySQL)，6080(Aria2)，下面是开放80端口的命令，其他替换一下端口号就可以了，改完要重启防火墙。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br></pre></td></tr></table></figure>
+
+<p>​        如果嫌麻烦可以直接关闭firewall</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl disable firewalld</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="3-安装nginx"><a href="#3-安装nginx" class="headerlink" title="3.安装nginx"></a>3.安装nginx</h5><p>​        先将nginx的软件源添加到centos 7 系统中。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum localinstall http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<p>​        安装nginx，并启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx -y</span><br><span class="line">systemctl start nginx </span><br><span class="line">systemctl enable nginx</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4-安装MySQL"><a href="#4-安装MySQL" class="headerlink" title="4.安装MySQL"></a>4.安装MySQL</h5><p>​        这里安装的是5.7版本的MySQL，老样子先将mysql5.7软件源添加到系统中。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum localinstall http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<p>​        安装MySQL并启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install mysql-community-server mysql-community-devel -y</span><br><span class="line">systemctl start mysqld</span><br><span class="line">systemctl enable mysqld</span><br></pre></td></tr></table></figure>
+
+<p>​        MySQL5.7之后更改了安全策略，使用以下命令查看临时密码，再登入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep 'password' /var/log/mysqld.log</span><br><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+<p>​        修改密码，如果遇到安全策略相关的问题，可以关闭密码策略，再更新密码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#set global validate_password_policy&#x3D;0;</span><br><span class="line">ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;password&#39;;</span><br><span class="line">flush privileges;</span><br><span class="line">exit;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5-安装PHP"><a href="#5-安装PHP" class="headerlink" title="5.安装PHP"></a>5.安装PHP</h5><p>​        CentOS7自带的php的版本5.4的，想要安装新版NextCloud就需要更高的php支持，我这里选择7.2版本的，也是先添加php7.2的软件源到系统中。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum localinstall https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</span><br></pre></td></tr></table></figure>
+
+<p>​        安装PHP及相关扩展</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install php72w php72w-cli php72w-common php72w-devel php72w-embedded php72w-fpm php72w-gd php72w-mbstring php72w-mysqlnd php72w-opcache php72w-pdo php72w-xml</span><br></pre></td></tr></table></figure>
+
+<p>​        安装redis以及PHP的扩展</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">yum install redis git -y</span><br><span class="line">cd /usr/local/src/</span><br><span class="line">git clone https://github.com/phpredis/phpredis.git</span><br><span class="line">cd phpredis</span><br><span class="line">phpize</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>​        启动php</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable php-fpm</span><br><span class="line">systemctl start php-fpm</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="6-整合nginx-php"><a href="#6-整合nginx-php" class="headerlink" title="6.整合nginx+php"></a>6.整合nginx+php</h5><p>​        编辑PHP文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/conf.d/default.conf</span><br></pre></td></tr></table></figure>
+
+<p>​        以下是个人的配置文件，仅供参考。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost; #IP或者域名</span><br><span class="line"></span><br><span class="line">    #charset koi8-r;</span><br><span class="line">    #access_log  /var/log/nginx/host.access.log  main;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /usr/share/nginx/html;  #站点路径</span><br><span class="line">        index  index.php index.html;  #添加index.php首页支持</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">    # redirect server error pages to the static page /50x.html</span><br><span class="line">    #</span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">    #</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #    proxy_pass   http://127.0.0.1;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">    #这里原来是注释掉的，全部去掉注释</span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        root           html;</span><br><span class="line">        fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">        fastcgi_index  index.php;</span><br><span class="line">        #这里要改，路径写成上面的访问路径，不让可能会出现File not found</span><br><span class="line">        fastcgi_param  SCRIPT_FILENAME /usr/share/nginx/html/$fastcgi_script_name; </span><br><span class="line">        include        fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # deny access to .htaccess files, if Apache's document root</span><br><span class="line">    # concurs with nginx's one</span><br><span class="line">    #</span><br><span class="line">    #location ~ /\.ht &#123;</span><br><span class="line">    #    deny  all;</span><br><span class="line">    #&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        最后在站点目录下，创建一个index.php，重启nginx，直接输入IP应该就能看到内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/share/nginx/html/index.php</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">phpinfo();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart nginx</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="7-安装NextCloud"><a href="#7-安装NextCloud" class="headerlink" title="7.安装NextCloud"></a>7.安装NextCloud</h5><p>​        下载NextCloud并解压，然后把解压出来的文件拷贝到站点目录下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.nextcloud.com/server/releases/nextcloud-18.0.4.zip</span><br><span class="line">unzip nextcloud-18.0.4.zip</span><br><span class="line">mv nextcloud/* /usr/share/nginx/html/</span><br></pre></td></tr></table></figure>
+
+<p>​        之后就可以打开网址，首先会让你创建管理员账号，连接数据库，完成之后点击即可进入NextCloud</p>
+<p><img src="%5Cimg%5Cimage-20200427155951022.png" alt="image-20200427155951022"></p>
 
       
 
@@ -244,7 +249,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/21/Nextcloud/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/04/21/LNMP%E7%8E%AF%E5%A2%83%E4%B8%8BNextCloud%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">展开全文 >></a>
         </p>
       
 
@@ -298,10 +303,10 @@
 <h3 id="脚本适用环境"><a href="#脚本适用环境" class="headerlink" title="脚本适用环境"></a>脚本适用环境</h3><p>系统支持：CentOS 6+，Debian 7+，Ubuntu 12+<br>内存要求：≥128M</p>
 <h3 id="关于本脚"><a href="#关于本脚" class="headerlink" title="关于本脚"></a>关于本脚</h3><p>1、一键安装 Shadowsocks-Python， ShadowsocksR， Shadowsocks-Go， Shadowsocks-libev 版（四选一）服务端；<br>2、各版本的启动脚本及配置文件名不再重合；<br>3、每次运行可安装一种版本；<br>4、支持以多次运行来安装多个版本，且各个版本可以共存（注意端口号需设成不同）；<br>5、若已安装多个版本，则卸载时也需多次运行（每次卸载一种）；</p>
 <h3 id="默认配置"><a href="#默认配置" class="headerlink" title="默认配置"></a><strong>默认配置</strong></h3><p>服务器端口：自由设定（如不设定，默认从 9000-19999 之间随机生成）<br>密码：自己设定（如不设定，默认为 <a href="http://teddysun.com/" target="_blank" rel="noopener">teddysun.com</a>）<br>加密方式：自己设定（如不设定，Python 和 libev 版默认为 aes-256-gcm，R 和 Go 版默认为 aes-256-cfb）<br>协议（protocol）：自己设定（如不设定，默认为 origin）（仅限 ShadowsocksR 版）<br>混淆（obfs）：自己设定（如不设定，默认为 plain）（仅限 ShadowsocksR 版）<br>备注：脚本默认创建单用户配置文件，如需配置多用户，请手动修改相应的配置文件后重启即可。</p>
-<h3 id="配置方法："><a href="#配置方法：" class="headerlink" title="配置方法："></a>配置方法：</h3><p>开启<a href="https://1drv.ms/u/s!AuG8vc-HIAxisBvTH9vaJY4NW0Jv?e=ADKYha" target="_blank" rel="noopener">BBR</a>加速</p>
+<h3 id="配置方法："><a href="#配置方法：" class="headerlink" title="配置方法："></a>配置方法：</h3><p>开启<a href="https://github.com/liyang1013/liyang1013.github.io/blob/master/files/bbr.sh" target="_blank" rel="noopener">BBR</a>加速</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</span><br><span class="line">chmod +x bbr.sh</span><br><span class="line">./bbr.sh</span><br></pre></td></tr></table></figure>
 
-<p>安装<a href="https://1drv.ms/u/s!AuG8vc-HIAxisBqahscJlAo2M0io?e=4utGtV" target="_blank" rel="noopener">SSR</a></p>
+<p>安装<a href="https://github.com/liyang1013/liyang1013.github.io/blob/master/files/shadowsocks-all.sh" target="_blank" rel="noopener">SSR</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</span><br><span class="line">chmod +x shadowsocks-all.sh</span><br><span class="line">./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log</span><br></pre></td></tr></table></figure>
 
 <p>卸载</p>
@@ -389,7 +394,7 @@
 <p>4、对应Oreo的RUU包</p>
 <p>5、<a href="https://developer.android.google.cn/studio/releases/platform-tools" target="_blank" rel="noopener">Android platform tools</a></p>
 <p>6、第三方<a href="https://forum.xda-developers.com/htc-u11/development/unofficial-htc-u11-twrp-recovery-t3706264" target="_blank" rel="noopener">Recovery</a></p>
-<p>7、<a href="https://1drv.ms/u/s!AuG8vc-HIAxigo0Qot2RVVZcOk-zoA?e=GNfEzk" target="_blank" rel="noopener">RUU解密工具</a></p>
+<p>7、<a href="https://github.com/liyang1013/liyang1013.github.io/blob/master/files/HTC-RUU_Decrypt_Tool_3.6.8-WINDOWS64.zip" target="_blank" rel="noopener">RUU解密工具</a></p>
 <p>8、<a href="https://androidfilehost.com/?fid=673791459329065690" target="_blank" rel="noopener">Batch刷机工具</a></p>
 <h3 id="二-安装驱动"><a href="#二-安装驱动" class="headerlink" title="二.安装驱动"></a>二.安装驱动</h3><p>​        安装驱动软件,在Android platform tools里打开cmd窗口,输入<code>adb devices</code>看到设备号就代表驱动已正确安装。</p>
 <h3 id="三-刷入第三方Recovery"><a href="#三-刷入第三方Recovery" class="headerlink" title="三.刷入第三方Recovery"></a>三.刷入第三方Recovery</h3><p>​        可以去twrp官网下载对应机器的recovery,或者用其他人修改的一些recovery,在上一步的基础上cmd运行<code>adb reboot to download</code>重启到Download模式后在运行<code>fastboot falsh recovery ${recovery.img}</code>这里recovery.img代表绝对路径,也可以直接把recovery拖进cmd窗口。</p>
