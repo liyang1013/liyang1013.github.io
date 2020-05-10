@@ -144,6 +144,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java错误 需要class, interface或enum" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/10/Java%E9%94%99%E8%AF%AF%20%E9%9C%80%E8%A6%81class,%20interface%E6%88%96enum/">Java错误 需要class, interface或enum</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/10/Java%E9%94%99%E8%AF%AF%20%E9%9C%80%E8%A6%81class,%20interface%E6%88%96enum/" class="archive-article-date">
+  	<time datetime="2020-05-10T09:57:57.867Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Java错误-需要class-interface或enum"><a href="#Java错误-需要class-interface或enum" class="headerlink" title="Java错误: 需要class, interface或enum"></a>Java错误: 需要class, interface或enum</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hello,world"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;   </span><br><span class="line"></span><br><span class="line">demo.java:<span class="number">1</span>: 错误: 需要<span class="class"><span class="keyword">class</span>, <span class="title">interface</span>或<span class="title">enum</span></span></span><br><span class="line"><span class="class">锘縫<span class="title">ublic</span> <span class="title">class</span> <span class="title">demo</span></span>&#123;</span><br><span class="line">^</span><br><span class="line"><span class="number">1</span> 个错误</span><br></pre></td></tr></table></figure>
+
+<p>​        报这个错误挺懵逼了，这么想也写了这么久的代码，Java的专有名词不可能会写错把，瞪了半天没看出来，都快怀疑自己了。随查了一下，居然是编码问题，我用的是notepad++，把编码改成UTF-8（不带BOM就行了，下面是查到的原文：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">这个错误出现的主要原因是java文件的编码问题。</span><br><span class="line">在中文操作系统中，使用一贯的“javac HelloWorld.java”方式编译UTF-8（带BOM）编码的.java源文件，在没有指定编码参数（encoding）的情况下，默认是使用GBK编码。当编译器用GBK编码来编译UTF-8文件时，就会把UTF-8（带BOM）编码文件的文件头的占3个字节的头信息，按照GBK中汉字占两个字节、英文占1个字节的特性解码成了“乱码”的两个汉字。这个源文件应该是用记事本另存存为UTF-8编码造成的。</span><br><span class="line"></span><br><span class="line">对于非GBK及其子集编码（GB2312）的正确的源文件，编译方式为“javac -encoding &quot;UTF-8&quot; HelloWord.java”，这样代码错误的指定代码里就不会出现乱码的中文。</span><br><span class="line">但是依然会有错误，提示“HelloWorld.java:1: 非法字符: \65279。</span><br><span class="line">这是因为.java对于UTF-8编码，只识别UTF-8（不带BOM）那种。而记事本只支持保存文件为带签名的UTF-8，那有没有办法解决呢？</span><br><span class="line">当然是有的，那就是使用EmEditor、EditPlus、UltraEdit或Notepad++之类的工具另存为UTF（不带BOM）（区别于带UTF + BOM）的编码文件。这时候使用“javac -encoding &quot;UTF-8&quot; HelloWorld.java”，就没有上述编码问题了。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/10/Java%E9%94%99%E8%AF%AF%20%E9%9C%80%E8%A6%81class,%20interface%E6%88%96enum/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -171,6 +244,11 @@
 
 <h3 id="动态规划找到子数组的最大和"><a href="#动态规划找到子数组的最大和" class="headerlink" title="动态规划找到子数组的最大和"></a>动态规划找到子数组的最大和</h3><p>​        得到给定一组数组的其中最大值的子数组的和，最大值为负直接返回0</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] a=<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,-<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,-<span class="number">5</span>,<span class="number">7</span>,<span class="number">1</span>,-<span class="number">2</span>,-<span class="number">4</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> currentMaxSum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> MaxSum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">        currentMaxSum+=a[i];</span><br><span class="line">        <span class="keyword">if</span>(currentMaxSum&gt;MaxSum)&#123;</span><br><span class="line">            MaxSum=currentMaxSum;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(currentMaxSum&lt;<span class="number">0</span>)</span><br><span class="line">            currentMaxSum=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(MaxSum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>​        把2个有序数组合并</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">13</span>, <span class="number">60</span>, <span class="number">80</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span>[] b = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">5</span>, <span class="number">9</span>, <span class="number">13</span>, <span class="number">60</span>, <span class="number">100</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span>[] c = <span class="keyword">new</span> <span class="keyword">int</span>[a.length + b.length];</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, pos = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &lt; b[j]) &#123;</span><br><span class="line">            c[pos++] = a[i++];</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            c[pos++] = b[j++];</span><br><span class="line">    &#125; <span class="keyword">while</span> (i &lt; a.length &amp;&amp; j &lt; b.length);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (i &lt; a.length) &#123;</span><br><span class="line">        c[pos++] = a[i++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (j &lt; b.length) &#123;</span><br><span class="line">        c[pos++] = b[j++];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> s : c) &#123;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       

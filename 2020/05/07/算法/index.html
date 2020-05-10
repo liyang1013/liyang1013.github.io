@@ -16,7 +16,7 @@
 <meta property="og:description" content="选择排序​        第一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，然后再从剩余的未排序元素中寻找到最小（大）元素，然后放到已排序的序列的末尾 1234567891011121314151617181920212223242526272829public class Selected &amp;#123;    public static void main(Strin">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-07T03:39:44.314Z">
-<meta property="article:modified_time" content="2020-05-07T04:58:04.161Z">
+<meta property="article:modified_time" content="2020-05-10T03:05:12.658Z">
 <meta property="article:author" content="Li Yang">
 <meta name="twitter:card" content="summary">
   
@@ -175,6 +175,11 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] a=<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,-<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,-<span class="number">5</span>,<span class="number">7</span>,<span class="number">1</span>,-<span class="number">2</span>,-<span class="number">4</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> currentMaxSum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> MaxSum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">        currentMaxSum+=a[i];</span><br><span class="line">        <span class="keyword">if</span>(currentMaxSum&gt;MaxSum)&#123;</span><br><span class="line">            MaxSum=currentMaxSum;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(currentMaxSum&lt;<span class="number">0</span>)</span><br><span class="line">            currentMaxSum=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(MaxSum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
+
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>​        把2个有序数组合并</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">13</span>, <span class="number">60</span>, <span class="number">80</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span>[] b = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">5</span>, <span class="number">9</span>, <span class="number">13</span>, <span class="number">60</span>, <span class="number">100</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span>[] c = <span class="keyword">new</span> <span class="keyword">int</span>[a.length + b.length];</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, pos = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &lt; b[j]) &#123;</span><br><span class="line">            c[pos++] = a[i++];</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            c[pos++] = b[j++];</span><br><span class="line">    &#125; <span class="keyword">while</span> (i &lt; a.length &amp;&amp; j &lt; b.length);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (i &lt; a.length) &#123;</span><br><span class="line">        c[pos++] = a[i++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (j &lt; b.length) &#123;</span><br><span class="line">        c[pos++] = b[j++];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> s : c) &#123;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -245,6 +250,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/05/10/Java%E9%94%99%E8%AF%AF%20%E9%9C%80%E8%A6%81class,%20interface%E6%88%96enum/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Java错误 需要class, interface或enum
+        
+      </div>
+    </a>
   
   
     <a href="/2020/05/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
