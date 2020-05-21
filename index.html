@@ -171,14 +171,14 @@
 <p>将 <strong>frps</strong> 及 <strong>frps.ini</strong> 放到具有公网 IP 的机器上。</p>
 <p>将 <strong>frpc</strong> 及 <strong>frpc.ini</strong> 放到处于内网环境的机器上。</p>
 <h3 id="2-配置文件"><a href="#2-配置文件" class="headerlink" title="2.配置文件"></a>2.配置文件</h3><p>以下是我服务器和NAS上的一些配置，仅供参考。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">--server--</span><br><span class="line"></span><br><span class="line">[common]</span><br><span class="line">bind_addr = 0.0.0.0</span><br><span class="line">bind_port = 7000</span><br><span class="line">vhost_http_port = 8080</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">--server--</span><br><span class="line"></span><br><span class="line">[common]</span><br><span class="line">bind_addr = 0.0.0.0</span><br><span class="line">bind_port = 7000</span><br><span class="line"><span class="meta">#</span><span class="bash">用到http服务可以填，https就改成vhost_https_port</span></span><br><span class="line">vhost_http_port = 8000</span><br></pre></td></tr></table></figure>
 
 <p>配置完后运行</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frps -c ./frps.ini</span><br></pre></td></tr></table></figure>
 
 
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">--client--</span><br><span class="line"></span><br><span class="line">[common]</span><br><span class="line">server_addr = yourip</span><br><span class="line">server_port = 7000</span><br><span class="line"></span><br><span class="line">[web]</span><br><span class="line">type = http</span><br><span class="line">local_port = 80</span><br><span class="line">custom_domains = yourdoamin.com</span><br><span class="line"></span><br><span class="line">[Aria2]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 6080</span><br><span class="line">remote_port = 6001</span><br><span class="line"></span><br><span class="line">[AriaNg]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 6081</span><br><span class="line">remote_port = 6002</span><br><span class="line"></span><br><span class="line">[BT]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 10086</span><br><span class="line">remote_port = 6003</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">--client--</span><br><span class="line"></span><br><span class="line">[common]</span><br><span class="line"><span class="meta">#</span><span class="bash">服务器IP</span></span><br><span class="line">server_addr = yourip</span><br><span class="line">server_port = 7000</span><br><span class="line"></span><br><span class="line">[web]</span><br><span class="line">type = http</span><br><span class="line">local_port = 80</span><br><span class="line"><span class="meta">#</span><span class="bash">这里可以公网域名绑定服务器</span></span><br><span class="line"><span class="meta">#</span><span class="bash">如果使用宝塔之类的有站点过滤的，访问路径是yourdomain.com:8000,port就是上面服务器配置里写的，但是过滤规则要写yourdoamin.com：80，有被坑到。</span></span><br><span class="line">custom_domains = yourdoamin.com</span><br><span class="line"></span><br><span class="line">[Aria2]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 6080</span><br><span class="line">remote_port = 6001</span><br><span class="line"></span><br><span class="line">[AriaNg]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 6081</span><br><span class="line">remote_port = 6002</span><br><span class="line"></span><br><span class="line">[BT]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 10086</span><br><span class="line">remote_port = 6003</span><br></pre></td></tr></table></figure>
 
 <p>配置完后运行</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./frpc -c ./frpc.ini</span><br></pre></td></tr></table></figure>
@@ -336,14 +336,9 @@
         <h3 id="Java错误-需要class-interface或enum"><a href="#Java错误-需要class-interface或enum" class="headerlink" title="Java错误: 需要class, interface或enum"></a>Java错误: 需要class, interface或enum</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hello,world"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;   </span><br><span class="line"></span><br><span class="line">demo.java:<span class="number">1</span>: 错误: 需要<span class="class"><span class="keyword">class</span>, <span class="title">interface</span>或<span class="title">enum</span></span></span><br><span class="line"><span class="class">锘縫<span class="title">ublic</span> <span class="title">class</span> <span class="title">demo</span></span>&#123;</span><br><span class="line">^</span><br><span class="line"><span class="number">1</span> 个错误</span><br></pre></td></tr></table></figure>
 
 <p>​        报这个错误挺懵逼了，这么想也写了这么久的代码，Java的专有名词不可能会写错把，瞪了半天没看出来，都快怀疑自己了。随查了一下，居然是编码问题，我用的是notepad++，把编码改成UTF-8（不带BOM）就行了，下面是查到的原文：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">这个错误出现的主要原因是java文件的编码问题。</span><br><span class="line">在中文操作系统中，使用一贯的“javac HelloWorld.java”方式编译UTF-8（带BOM）编码的.java源文件，在没有指定编码参数（encoding）的情况下，默认是使用GBK编码。当编译器用GBK编码来编译UTF-8文件时，就会把UTF-8（带BOM）编码文件的文件头的占3个字节的头信息，按照GBK中汉字占两个字节、英文占1个字节的特性解码成了“乱码”的两个汉字。这个源文件应该是用记事本另存存为UTF-8编码造成的。</span><br><span class="line"></span><br><span class="line">对于非GBK及其子集编码（GB2312）的正确的源文件，编译方式为“javac -encoding &quot;UTF-8&quot; HelloWord.java”，这样代码错误的指定代码里就不会出现乱码的中文。</span><br><span class="line">但是依然会有错误，提示“HelloWorld.java:1: 非法字符: \65279。</span><br><span class="line">这是因为.java对于UTF-8编码，只识别UTF-8（不带BOM）那种。而记事本只支持保存文件为带签名的UTF-8，那有没有办法解决呢？</span><br><span class="line">当然是有的，那就是使用EmEditor、EditPlus、UltraEdit或Notepad++之类的工具另存为UTF（不带BOM）（区别于带UTF + BOM）的编码文件。这时候使用“javac -encoding &quot;UTF-8&quot; HelloWorld.java”，就没有上述编码问题了。</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
+<p><strong>这个错误出现的主要原因是java文件的编码问题。</strong><br><strong>在中文操作系统中，使用一贯的“javac HelloWorld.java”方式编译UTF-8（带BOM）编码的.java源文件，在没有指定编码参数（encoding）的情况下，默认是使用GBK编码。当编译器用GBK编码来编译UTF-8文件时，就会把UTF-8（带BOM）编码文件的文件头的占3个字节的头信息，按照GBK中汉字占两个字节、英文占1个字节的特性解码成了“乱码”的两个汉字。这个源文件应该是用记事本另存存为UTF-8编码造成的。</strong></p>
+<p><strong>对于非GBK及其子集编码（GB2312）的正确的源文件，编译方式为“javac -encoding “UTF-8” HelloWord.java”，这样代码错误的指定代码里就不会出现乱码的中文。</strong><br><strong>但是依然会有错误，提示“HelloWorld.java:1: 非法字符: \65279。</strong><br><strong>这是因为.java对于UTF-8编码，只识别UTF-8（不带BOM）那种。</strong></p>
+<p><strong>可以使用EmEditor、EditPlus、UltraEdit或Notepad++之类的工具另存为UTF（不带BOM）（区别于带UTF + BOM）的编码文件。这时候使用“javac -encoding “UTF-8” HelloWorld.java”，就没有上述编码问题了。</strong></p>
 
       
 
@@ -552,7 +547,7 @@
 
 
 
-<h5 id="2-开放防火墙端口"><a href="#2-开放防火墙端口" class="headerlink" title="2.开放防火墙端口"></a>2.开放防火墙端口</h5><p>​        这里我需要80(HTTP)，443(HTTPS)，3306(MySQL)，6080(Aria2)，下面是开放80端口的命令，其他替换一下端口号就可以了，改完要重启防火墙。</p>
+<h5 id="2-开放防火墙端口"><a href="#2-开放防火墙端口" class="headerlink" title="2.开放防火墙端口"></a>2.开放防火墙端口</h5><p>​        这里我需要80(HTTP)，443(HTTPS)，3306(MySQL)，6080(Aria2)，6081(AriaNG)下面是开放80端口的命令，其他替换一下端口号就可以了，改完要重启防火墙。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br></pre></td></tr></table></figure>
 
 <p>​        如果嫌麻烦可以直接关闭firewall</p>
@@ -611,7 +606,7 @@
 
 
 
-<h5 id="7-安装NextCloud"><a href="#7-安装NextCloud" class="headerlink" title="7.安装NextCloud"></a>7.安装NextCloud</h5><p>​        下载NextCloud并解压，然后把解压出来的文件拷贝到站点目录下</p>
+<h5 id="7-安装NextCloud"><a href="#7-安装NextCloud" class="headerlink" title="7.安装NextCloud"></a>7.安装NextCloud</h5><p>​        下载NextCloud并解压，然后把解压出来的文件拷贝到站点目录下,注意权限</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.nextcloud.com/server/releases/nextcloud-18.0.4.zip</span><br><span class="line">unzip nextcloud-18.0.4.zip</span><br><span class="line">mv nextcloud/* /usr/share/nginx/html/</span><br></pre></td></tr></table></figure>
 
 <p>​        之后就可以打开网址，首先会让你创建管理员账号，连接数据库，完成之后点击即可进入NextCloud</p>
@@ -694,14 +689,14 @@
 
 
 <h3 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a><strong>启动脚本</strong></h3><p>启动脚本后面的参数含义，从左至右依次为：启动，停止，重启，查看状态。</p>
-<p>Shadowsocks-Python 版：<br>/etc/init.d/shadowsocks-python start | stop | restart | status</p>
-<p>ShadowsocksR 版：<br>/etc/init.d/shadowsocks-r start | stop | restart | status</p>
-<p>Shadowsocks-Go 版：<br>/etc/init.d/shadowsocks-go start | stop | restart | status</p>
-<p>Shadowsocks-libev 版：<br>/etc/init.d/shadowsocks-libev start | stop | restart | status</p>
-<h3 id="各版本默认配置文件"><a href="#各版本默认配置文件" class="headerlink" title="各版本默认配置文件"></a><strong>各版本默认配置文件</strong></h3><p>Shadowsocks-Python 版：<br>/etc/shadowsocks-python/config.json</p>
-<p>ShadowsocksR 版：<br>/etc/shadowsocks-r/config.json</p>
-<p>Shadowsocks-Go 版：<br>/etc/shadowsocks-go/config.json</p>
-<p>Shadowsocks-libev 版：<br>/etc/shadowsocks-libev/config.json</p>
+<p>Shadowsocks-Python 版：<code>/etc/init.d/shadowsocks-python start | stop | restart | status</code></p>
+<p>ShadowsocksR 版：<code>/etc/init.d/shadowsocks-r start | stop | restart | status</code></p>
+<p>Shadowsocks-Go 版：<code>/etc/init.d/shadowsocks-go start | stop | restart | status</code></p>
+<p>Shadowsocks-libev 版：<code>/etc/init.d/shadowsocks-libev start | stop | restart | status</code></p>
+<h3 id="各版本默认配置文件"><a href="#各版本默认配置文件" class="headerlink" title="各版本默认配置文件"></a><strong>各版本默认配置文件</strong></h3><p>Shadowsocks-Python 版：/etc/shadowsocks-python/config.json</p>
+<p>ShadowsocksR 版：/etc/shadowsocks-r/config.json</p>
+<p>Shadowsocks-Go 版：/etc/shadowsocks-go/config.json</p>
+<p>Shadowsocks-libev 版：/etc/shadowsocks-libev/config.json</p>
 
       
 

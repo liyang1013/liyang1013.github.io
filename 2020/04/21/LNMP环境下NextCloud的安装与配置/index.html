@@ -17,7 +17,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/img/image-20200427155951022.png">
 <meta property="article:published_time" content="2020-04-21T08:14:39.822Z">
-<meta property="article:modified_time" content="2020-04-28T10:52:35.547Z">
+<meta property="article:modified_time" content="2020-05-21T02:24:25.920Z">
 <meta property="article:author" content="Li Yang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/img/image-20200427155951022.png">
@@ -177,7 +177,7 @@
 
 
 
-<h5 id="2-开放防火墙端口"><a href="#2-开放防火墙端口" class="headerlink" title="2.开放防火墙端口"></a>2.开放防火墙端口</h5><p>​        这里我需要80(HTTP)，443(HTTPS)，3306(MySQL)，6080(Aria2)，下面是开放80端口的命令，其他替换一下端口号就可以了，改完要重启防火墙。</p>
+<h5 id="2-开放防火墙端口"><a href="#2-开放防火墙端口" class="headerlink" title="2.开放防火墙端口"></a>2.开放防火墙端口</h5><p>​        这里我需要80(HTTP)，443(HTTPS)，3306(MySQL)，6080(Aria2)，6081(AriaNG)下面是开放80端口的命令，其他替换一下端口号就可以了，改完要重启防火墙。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br></pre></td></tr></table></figure>
 
 <p>​        如果嫌麻烦可以直接关闭firewall</p>
@@ -236,7 +236,7 @@
 
 
 
-<h5 id="7-安装NextCloud"><a href="#7-安装NextCloud" class="headerlink" title="7.安装NextCloud"></a>7.安装NextCloud</h5><p>​        下载NextCloud并解压，然后把解压出来的文件拷贝到站点目录下</p>
+<h5 id="7-安装NextCloud"><a href="#7-安装NextCloud" class="headerlink" title="7.安装NextCloud"></a>7.安装NextCloud</h5><p>​        下载NextCloud并解压，然后把解压出来的文件拷贝到站点目录下,注意权限</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.nextcloud.com/server/releases/nextcloud-18.0.4.zip</span><br><span class="line">unzip nextcloud-18.0.4.zip</span><br><span class="line">mv nextcloud/* /usr/share/nginx/html/</span><br></pre></td></tr></table></figure>
 
 <p>​        之后就可以打开网址，首先会让你创建管理员账号，连接数据库，完成之后点击即可进入NextCloud</p>
