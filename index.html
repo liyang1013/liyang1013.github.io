@@ -144,6 +144,88 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-类和对象的加载过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/02/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">类和对象的加载过程</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/02/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/" class="archive-article-date">
+  	<time datetime="2020-06-02T07:54:35.628Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-Loading-Of-Class"><a href="#一-Loading-Of-Class" class="headerlink" title="一. Loading Of Class"></a>一. Loading Of Class</h3><p><strong>1、</strong> 启动JVM，开始分配内存空间； </p>
+<p><strong>2、</strong> 开始加载*.class文件，加载到方法区（JDK 1.8之后在元空间）中，在加载的过程中静态的内容要进入静态区中；</p>
+<p><strong>3、</strong> 在开始运行main方法，这时JVM就会把main调用到栈中运行，开始从方法的第一行往下运行；</p>
+<p><strong>4、</strong> 在main方法中new this()，JVM就会在方法区（JDK 1.8之后在元空间）中查找有没有this.class文件，如果没有就加载this.class文件，并且this继承supper类，所以也要查找有没有supper类，如果没有也要加载supper.class文件。</p>
+<p><strong>5、</strong>this .class和supper.class中的所有的非静态内容会加载到非静态的区域中，而静态的内容会加载到静态区中。静态内容（静态变量，静态代码块，静态方法）按照书写顺序加载。</p>
+<p>（类的加载只会执行一次。下次再创建对象时，可以直接在方法区中获取class信息。）</p>
+<p><strong>6、</strong> 开始给静态区中的所有静态的成员变量开始默认初始化。默认初始化完成之后，开始给所有的静态成员变量显示初始化。</p>
+<p><strong>7、</strong> 所有静态成员变量显示初始化完成之后，开始执行静态的代码块。先执行父类的静态代码块，再执行子类的静态代码块。</p>
+<p><strong>静态代码块是在类加载的时候执行的，类的加载只会执行一次所以静态代码块也只会执行一次；非静态代码块和构造函数中的代码是在对象创建的时候执行的，因此对象创建(new)一次，它们就会执行一次。</strong></p>
+<p><strong>8、</strong> 这时supper.class文件 和 this.class文件加载完成。</p>
+<h3 id="二-Loading-Of-Object"><a href="#二-Loading-Of-Object" class="headerlink" title="二. Loading Of Object"></a>二. Loading Of Object</h3><p><strong>9、</strong> 开始在堆中创建this对象。给this对象分配内存空间，指向某片内存地址。</p>
+<p><strong>10、</strong>开始对类中的的非静态的成员变量开始默认初始化。</p>
+<p><strong>11、</strong>开始加载对应的构造方法，执行隐式三步：</p>
+<ul>
+<li>父类构造函数supper();</li>
+<li>非静态成员变量的显示初始化</li>
+<li>执行非静态构造代码块</li>
+</ul>
+<p><strong>12、</strong>执行本类中的构造函数。</p>
+<p><strong>13、</strong>对象创建完成，把内存的地址返回。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/02/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JVM内存分配" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -171,7 +253,7 @@
 <p><strong>根据虚拟机规范，Java堆可以处于物理上的不连续内存中，只要逻辑上是连续即可。其大小可以通过-Xmx和-Xms控制。如果在堆中没有内存完成实例分配，并且堆也无法扩展时会抛出OutOfMemoryError异常。</strong></p>
 <h5 id="5-永久代（方法区）"><a href="#5-永久代（方法区）" class="headerlink" title="5. 永久代（方法区）"></a>5. 永久代（方法区）</h5><p><strong>存储已被虚拟机加载的类信息、常量、静态变量等数据。但是很容易出现内存溢出的问题。（永久代有-XX：MaxPermSize的上限）字符串存在永久代中，容易出现性能问题和内存溢出。类及方法的信息等比较难确定其大小，因此对于永久代的大小指定比较困难，太小容易出现永久代溢出，太大则容易导致老年代溢出。永久代会为 GC 带来不必要的复杂度，并且回收效率偏低。</strong></p>
 <h5 id="6-元空间"><a href="#6-元空间" class="headerlink" title="6.元空间"></a>6.元空间</h5><p> <strong>在JDK1.8中元空间区取代了永久代，永久代原本主要存放Class和Meta的信息。元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。因此，默认情况下，元空间的大小仅受本地内存限制。</strong></p>
-<h3 id="三-JVM内存图解"><a href="#三-JVM内存图解" class="headerlink" title="三. JVM内存图解"></a>三. JVM内存图解</h3><p><img src="../img/20190305150132242.png" alt="JVM内存结构"></p>
+<h3 id="三-JVM内存图解"><a href="#三-JVM内存图解" class="headerlink" title="三. JVM内存图解"></a>三. JVM内存图解</h3><p><img src="/img/20190305150132242.png" alt="JVM内存结构"></p>
 
       
 
@@ -452,19 +534,19 @@
 
 
   
-    <article id="post-Java错误 需要class, interface或enum" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-写过的Bug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/10/Java%E9%94%99%E8%AF%AF%20%E9%9C%80%E8%A6%81class,%20interface%E6%88%96enum/">Java错误 需要class, interface或enum</a>
+      <a class="article-title" href="/2020/05/10/%E5%86%99%E8%BF%87%E7%9A%84Bug/">写过的Bug</a>
     </h1>
   
 
         
-        <a href="/2020/05/10/Java%E9%94%99%E8%AF%AF%20%E9%9C%80%E8%A6%81class,%20interface%E6%88%96enum/" class="archive-article-date">
+        <a href="/2020/05/10/%E5%86%99%E8%BF%87%E7%9A%84Bug/" class="archive-article-date">
   	<time datetime="2020-05-10T09:57:57.867Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
 </a>
         
@@ -472,12 +554,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Java错误-需要class-interface或enum"><a href="#Java错误-需要class-interface或enum" class="headerlink" title="Java错误: 需要class, interface或enum"></a>Java错误: 需要class, interface或enum</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hello,world"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;   </span><br><span class="line"></span><br><span class="line">demo.java:<span class="number">1</span>: 错误: 需要<span class="class"><span class="keyword">class</span>, <span class="title">interface</span>或<span class="title">enum</span></span></span><br><span class="line"><span class="class">锘縫<span class="title">ublic</span> <span class="title">class</span> <span class="title">demo</span></span>&#123;</span><br><span class="line">^</span><br><span class="line"><span class="number">1</span> 个错误</span><br></pre></td></tr></table></figure>
+        <h3 id="一-Java错误-需要class-interface或enum"><a href="#一-Java错误-需要class-interface或enum" class="headerlink" title="一. Java错误: 需要class, interface或enum"></a>一. Java错误: 需要class, interface或enum</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hello,world"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;   </span><br><span class="line"></span><br><span class="line"><span class="comment">//错误</span></span><br><span class="line">demo.java:<span class="number">1</span>: 错误: 需要<span class="class"><span class="keyword">class</span>, <span class="title">interface</span>或<span class="title">enum</span></span></span><br><span class="line"><span class="class">锘縫<span class="title">ublic</span> <span class="title">class</span> <span class="title">demo</span></span>&#123;</span><br><span class="line">^</span><br><span class="line"><span class="number">1</span> 个错误</span><br></pre></td></tr></table></figure>
 
-<p>​        报这个错误挺懵逼了，这么想也写了这么久的代码，Java的专有名词不可能会写错把，瞪了半天没看出来，都快怀疑自己了。随查了一下，居然是编码问题，我用的是notepad++，把编码改成UTF-8（不带BOM）就行了，下面是查到的原文：</p>
-<p><strong>这个错误出现的主要原因是java文件的编码问题。</strong><br><strong>在中文操作系统中，使用一贯的“javac HelloWorld.java”方式编译UTF-8（带BOM）编码的.java源文件，在没有指定编码参数（encoding）的情况下，默认是使用GBK编码。当编译器用GBK编码来编译UTF-8文件时，就会把UTF-8（带BOM）编码文件的文件头的占3个字节的头信息，按照GBK中汉字占两个字节、英文占1个字节的特性解码成了“乱码”的两个汉字。这个源文件应该是用记事本另存存为UTF-8编码造成的。</strong></p>
-<p><strong>对于非GBK及其子集编码（GB2312）的正确的源文件，编译方式为“javac -encoding “UTF-8” HelloWord.java”，这样代码错误的指定代码里就不会出现乱码的中文。</strong><br><strong>但是依然会有错误，提示“HelloWorld.java:1: 非法字符: \65279。</strong><br><strong>这是因为.java对于UTF-8编码，只识别UTF-8（不带BOM）那种。</strong></p>
-<p><strong>可以使用EmEditor、EditPlus、UltraEdit或Notepad++之类的工具另存为UTF（不带BOM）（区别于带UTF + BOM）的编码文件。这时候使用“javac -encoding “UTF-8” HelloWorld.java”，就没有上述编码问题了。</strong></p>
+<p>​        报这个错误挺懵逼了，这么想也写了这么久的代码，Java的专有名词不可能会写错把，瞪了半天没看出来，都快怀疑自己了。随查了一下，居然是编码问题，我用的是notepad++，把编码改成UTF-8（不带BOM）就行了。</p>
+<p>这个错误出现的主要原因是java文件的编码问题。在中文操作系统中，使用的“javac HelloWorld.java”方式编译UTF-8（带BOM）编码的.java源文件，在没有指定编码参数（encoding）的情况下，默认是使用GBK编码。当编译器用GBK编码来编译UTF-8文件时，就会把UTF-8（带BOM）编码文件的文件头的占3个字节的头信息，按照GBK中汉字占两个字节、英文占1个字节的特性解码成了“乱码”的两个汉字。</p>
+<p>对于非GBK及其子集编码（GB2312）的正确的源文件，编译方式为“javac -encoding “UTF-8” HelloWord.java”，这样代码错误的指定代码里就不会出现乱码的中文。但是依然会有错误，提示“HelloWorld.java:1: 非法字符: \65279。这是因为*.java对于UTF-8编码，只识别UTF-8（不带BOM）那种。</p>
 
       
 
@@ -490,7 +571,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/10/Java%E9%94%99%E8%AF%AF%20%E9%9C%80%E8%A6%81class,%20interface%E6%88%96enum/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/05/10/%E5%86%99%E8%BF%87%E7%9A%84Bug/">展开全文 >></a>
         </p>
       
 

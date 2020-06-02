@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java错误 需要class, interface或enum | Li Yang&#39;s Blog</title>
+  <title>类和对象的加载过程 | Li Yang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java错误: 需要class, interface或enum12345678910public class demo&amp;#123;    public static void main(String[] args)&amp;#123;        System.out.println(&quot;hello,world&quot;);	&amp;#125;&amp;#125;   demo.java:1: 错误: 需要class, int">
+  <meta name="description" content="一. Loading Of Class1、 启动JVM，开始分配内存空间；  2、 开始加载*.class文件，加载到方法区（JDK 1.8之后在元空间）中，在加载的过程中静态的内容要进入静态区中； 3、 在开始运行main方法，这时JVM就会把main调用到栈中运行，开始从方法的第一行往下运行； 4、 在main方法中new this()，JVM就会在方法区（JDK 1.8之后在元空间）中查找有">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java错误 需要class, interface或enum">
-<meta property="og:url" content="http://yoursite.com/2020/05/10/Java%E9%94%99%E8%AF%AF%20%E9%9C%80%E8%A6%81class,%20interface%E6%88%96enum/index.html">
+<meta property="og:title" content="类和对象的加载过程">
+<meta property="og:url" content="http://yoursite.com/2020/06/02/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Li Yang&#39;s Blog">
-<meta property="og:description" content="Java错误: 需要class, interface或enum12345678910public class demo&amp;#123;    public static void main(String[] args)&amp;#123;        System.out.println(&quot;hello,world&quot;);	&amp;#125;&amp;#125;   demo.java:1: 错误: 需要class, int">
+<meta property="og:description" content="一. Loading Of Class1、 启动JVM，开始分配内存空间；  2、 开始加载*.class文件，加载到方法区（JDK 1.8之后在元空间）中，在加载的过程中静态的内容要进入静态区中； 3、 在开始运行main方法，这时JVM就会把main调用到栈中运行，开始从方法的第一行往下运行； 4、 在main方法中new this()，JVM就会在方法区（JDK 1.8之后在元空间）中查找有">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-05-10T09:57:57.867Z">
-<meta property="article:modified_time" content="2020-05-21T02:23:06.429Z">
+<meta property="article:published_time" content="2020-06-02T07:54:35.628Z">
+<meta property="article:modified_time" content="2020-06-02T09:11:24.766Z">
 <meta property="article:author" content="Li Yang">
 <meta name="twitter:card" content="summary">
   
@@ -146,32 +146,46 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java错误 需要class, interface或enum" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-类和对象的加载过程" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java错误 需要class, interface或enum
+      类和对象的加载过程
     </h1>
   
 
         
-        <a href="/2020/05/10/Java%E9%94%99%E8%AF%AF%20%E9%9C%80%E8%A6%81class,%20interface%E6%88%96enum/" class="archive-article-date">
-  	<time datetime="2020-05-10T09:57:57.867Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
+        <a href="/2020/06/02/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/" class="archive-article-date">
+  	<time datetime="2020-06-02T07:54:35.628Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Java错误-需要class-interface或enum"><a href="#Java错误-需要class-interface或enum" class="headerlink" title="Java错误: 需要class, interface或enum"></a>Java错误: 需要class, interface或enum</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hello,world"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;   </span><br><span class="line"></span><br><span class="line">demo.java:<span class="number">1</span>: 错误: 需要<span class="class"><span class="keyword">class</span>, <span class="title">interface</span>或<span class="title">enum</span></span></span><br><span class="line"><span class="class">锘縫<span class="title">ublic</span> <span class="title">class</span> <span class="title">demo</span></span>&#123;</span><br><span class="line">^</span><br><span class="line"><span class="number">1</span> 个错误</span><br></pre></td></tr></table></figure>
-
-<p>​        报这个错误挺懵逼了，这么想也写了这么久的代码，Java的专有名词不可能会写错把，瞪了半天没看出来，都快怀疑自己了。随查了一下，居然是编码问题，我用的是notepad++，把编码改成UTF-8（不带BOM）就行了，下面是查到的原文：</p>
-<p><strong>这个错误出现的主要原因是java文件的编码问题。</strong><br><strong>在中文操作系统中，使用一贯的“javac HelloWorld.java”方式编译UTF-8（带BOM）编码的.java源文件，在没有指定编码参数（encoding）的情况下，默认是使用GBK编码。当编译器用GBK编码来编译UTF-8文件时，就会把UTF-8（带BOM）编码文件的文件头的占3个字节的头信息，按照GBK中汉字占两个字节、英文占1个字节的特性解码成了“乱码”的两个汉字。这个源文件应该是用记事本另存存为UTF-8编码造成的。</strong></p>
-<p><strong>对于非GBK及其子集编码（GB2312）的正确的源文件，编译方式为“javac -encoding “UTF-8” HelloWord.java”，这样代码错误的指定代码里就不会出现乱码的中文。</strong><br><strong>但是依然会有错误，提示“HelloWorld.java:1: 非法字符: \65279。</strong><br><strong>这是因为.java对于UTF-8编码，只识别UTF-8（不带BOM）那种。</strong></p>
-<p><strong>可以使用EmEditor、EditPlus、UltraEdit或Notepad++之类的工具另存为UTF（不带BOM）（区别于带UTF + BOM）的编码文件。这时候使用“javac -encoding “UTF-8” HelloWorld.java”，就没有上述编码问题了。</strong></p>
+        <h3 id="一-Loading-Of-Class"><a href="#一-Loading-Of-Class" class="headerlink" title="一. Loading Of Class"></a>一. Loading Of Class</h3><p><strong>1、</strong> 启动JVM，开始分配内存空间； </p>
+<p><strong>2、</strong> 开始加载*.class文件，加载到方法区（JDK 1.8之后在元空间）中，在加载的过程中静态的内容要进入静态区中；</p>
+<p><strong>3、</strong> 在开始运行main方法，这时JVM就会把main调用到栈中运行，开始从方法的第一行往下运行；</p>
+<p><strong>4、</strong> 在main方法中new this()，JVM就会在方法区（JDK 1.8之后在元空间）中查找有没有this.class文件，如果没有就加载this.class文件，并且this继承supper类，所以也要查找有没有supper类，如果没有也要加载supper.class文件。</p>
+<p><strong>5、</strong>this .class和supper.class中的所有的非静态内容会加载到非静态的区域中，而静态的内容会加载到静态区中。静态内容（静态变量，静态代码块，静态方法）按照书写顺序加载。</p>
+<p>（类的加载只会执行一次。下次再创建对象时，可以直接在方法区中获取class信息。）</p>
+<p><strong>6、</strong> 开始给静态区中的所有静态的成员变量开始默认初始化。默认初始化完成之后，开始给所有的静态成员变量显示初始化。</p>
+<p><strong>7、</strong> 所有静态成员变量显示初始化完成之后，开始执行静态的代码块。先执行父类的静态代码块，再执行子类的静态代码块。</p>
+<p><strong>静态代码块是在类加载的时候执行的，类的加载只会执行一次所以静态代码块也只会执行一次；非静态代码块和构造函数中的代码是在对象创建的时候执行的，因此对象创建(new)一次，它们就会执行一次。</strong></p>
+<p><strong>8、</strong> 这时supper.class文件 和 this.class文件加载完成。</p>
+<h3 id="二-Loading-Of-Object"><a href="#二-Loading-Of-Object" class="headerlink" title="二. Loading Of Object"></a>二. Loading Of Object</h3><p><strong>9、</strong> 开始在堆中创建this对象。给this对象分配内存空间，指向某片内存地址。</p>
+<p><strong>10、</strong>开始对类中的的非静态的成员变量开始默认初始化。</p>
+<p><strong>11、</strong>开始加载对应的构造方法，执行隐式三步：</p>
+<ul>
+<li>父类构造函数supper();</li>
+<li>非静态成员变量的显示初始化</li>
+<li>执行非静态构造代码块</li>
+</ul>
+<p><strong>12、</strong>执行本类中的构造函数。</p>
+<p><strong>13、</strong>对象创建完成，把内存的地址返回。</p>
 
       
 
@@ -230,7 +244,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/05/10/Java%E9%94%99%E8%AF%AF%20%E9%9C%80%E8%A6%81class,%20interface%E6%88%96enum/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/02/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -244,18 +258,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/20/frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          frp内网穿透
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/05/07/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">排序算法</div>
+    <a href="/2020/06/01/JVM%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JVM内存分配</div>
       <i class="icon-circle-right"></i>
     </a>
   
