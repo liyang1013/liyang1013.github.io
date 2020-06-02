@@ -144,6 +144,221 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JVM内存分配" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/01/JVM%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">JVM内存分配</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/01/JVM%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" class="archive-article-date">
+  	<time datetime="2020-06-01T10:14:37.163Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-线程独享"><a href="#一-线程独享" class="headerlink" title="一. 线程独享"></a>一. 线程独享</h3><h5 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1.程序计数器"></a>1.程序计数器</h5><p> <strong>程序计数器可以看作当前线程所执行的字节码的行号指示器，来存放下一条运行的指令，内存和CPU相关的。如果线程执行的是Java方法那么这个计数器记录的是正在执行的虚拟机字节码指令地址。如果执行的是Native方法，这个计数器为空。（该内存区是唯一没有规定任何OutOfMemoryError情况的区域）</strong></p>
+<h5 id="2-本地方法栈"><a href="#2-本地方法栈" class="headerlink" title="2.本地方法栈"></a>2.本地方法栈</h5><p><strong>本地方法栈与虚拟机栈作用相似，它们之间的区别是虚拟机栈为虚拟机执行Java方法服务，而本地方法栈则为虚拟机使用到的Native方法服务。与虚拟机栈一样本地方法也会抛出StackOverflowError异常和OutOfMemoryError异常。</strong></p>
+<h5 id="3-Java虚拟机栈"><a href="#3-Java虚拟机栈" class="headerlink" title="3.Java虚拟机栈"></a>3.Java虚拟机栈</h5><p><strong>Java虚拟机栈跟程序计数器一样是线程私有的，它的生命周期和线程相同。虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行时都会创建一个栈帧用于存储局部变量表、操作数栈、动态链接、方法出口等信息。每一个方法从调用到执行完成的过程，就对应一个栈帧在虚拟机栈中入栈到出栈的过程。在虚拟机规范中，这个区域规定了两种异常状况：如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常，如果虚拟机扩展时无法申请到足够的内存，就会抛出OutOfMemoryError异常</strong></p>
+<h3 id="二-线程共享"><a href="#二-线程共享" class="headerlink" title="二. 线程共享"></a>二. 线程共享</h3><h5 id="4-堆"><a href="#4-堆" class="headerlink" title="4. 堆"></a>4. 堆</h5><p> <strong>Java堆是被锁有线程共享的一块内存区域，在虚拟机启动时创建。这块区域唯一的目的就是存放对象实例，几乎所有对象实例都在该区域分配内存。Java堆还可以细分为：新生代和老年代。老年代与新生代比例为2：1。新生代分为一个Eden和两个Survivor区域，比例为8：1：1。JDK1.7后，字符串常量池从永久代中剥离出来，存放在堆中。</strong></p>
+<p><strong>根据虚拟机规范，Java堆可以处于物理上的不连续内存中，只要逻辑上是连续即可。其大小可以通过-Xmx和-Xms控制。如果在堆中没有内存完成实例分配，并且堆也无法扩展时会抛出OutOfMemoryError异常。</strong></p>
+<h5 id="5-永久代（方法区）"><a href="#5-永久代（方法区）" class="headerlink" title="5. 永久代（方法区）"></a>5. 永久代（方法区）</h5><p><strong>存储已被虚拟机加载的类信息、常量、静态变量等数据。但是很容易出现内存溢出的问题。（永久代有-XX：MaxPermSize的上限）字符串存在永久代中，容易出现性能问题和内存溢出。类及方法的信息等比较难确定其大小，因此对于永久代的大小指定比较困难，太小容易出现永久代溢出，太大则容易导致老年代溢出。永久代会为 GC 带来不必要的复杂度，并且回收效率偏低。</strong></p>
+<h5 id="6-元空间"><a href="#6-元空间" class="headerlink" title="6.元空间"></a>6.元空间</h5><p> <strong>在JDK1.8中元空间区取代了永久代，永久代原本主要存放Class和Meta的信息。元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。因此，默认情况下，元空间的大小仅受本地内存限制。</strong></p>
+<h3 id="三-JVM内存图解"><a href="#三-JVM内存图解" class="headerlink" title="三. JVM内存图解"></a>三. JVM内存图解</h3><p><img src="../img/20190305150132242.png" alt="JVM内存结构"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/01/JVM%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-查询算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/01/%E6%9F%A5%E8%AF%A2%E7%AE%97%E6%B3%95/">查询算法</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/01/%E6%9F%A5%E8%AF%A2%E7%AE%97%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-06-01T09:34:21.960Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-顺序查找"><a href="#一-顺序查找" class="headerlink" title="一. 顺序查找"></a>一. 顺序查找</h3><p>穷举一个一个来查询数组中是否有所查找元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">SequentialSearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> index=-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(key==arr[i])&#123;</span><br><span class="line">            index=i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> index;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="二-二分查找"><a href="#二-二分查找" class="headerlink" title="二. 二分查找"></a>二. 二分查找</h3><p>必须是有序数组，首先找到指向数组头和尾的两个指针，通过这2个指针找到中间值，和要查询的值比较，然后不停移动指针位置。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">BinarySearch</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> start=<span class="number">0</span>,end=arr.length,index=-<span class="number">1</span>;    </span><br><span class="line">    <span class="keyword">while</span>(start&lt;=end)&#123;</span><br><span class="line">        <span class="keyword">int</span> mid=(start+end)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(key==arr[mid])&#123;</span><br><span class="line">            index=mid;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(key&gt;arr[mid])&#123;</span><br><span class="line">            start=mid+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(key&lt;arr[mid])&#123;</span><br><span class="line">            end=mid-<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> index;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p> 插值查找</p>
+<p>斐波那契查找</p>
+<p>分块查找</p>
+<p>哈希查找</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/01/%E6%9F%A5%E8%AF%A2%E7%AE%97%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-设计模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2020-05-30T23:30:29.699Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-单例模式"><a href="#一-单例模式" class="headerlink" title="一. 单例模式"></a>一. 单例模式</h3><p>当多个线程共同访问时，可能会有复数个线程一起通过第一个判断，但是只有一个线程才能进入synchronized，其他线程会在锁外等待，第二个判断就是为了防止通过第一段判断的线程，由于已经创建了单例对象，防止重复创建。而且只有第一次对象被多个线程共同访问时调用是会用到synchronized，之后直接返回对象，因为synchronized方法很占资源。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="二-工厂模式"><a href="#二-工厂模式" class="headerlink" title="二. 工厂模式"></a>二. 工厂模式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-frp内网穿透" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -325,19 +540,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>​        第一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，然后再从剩余的未排序元素中寻找到最小（大）元素，然后放到已排序的序列的末尾</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Selected</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//随意创建一个无序数组</span></span><br><span class="line">        <span class="keyword">int</span>[] a=<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">10</span>,<span class="number">4</span>,<span class="number">12</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">231</span>,<span class="number">54</span>,<span class="number">21</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">           <span class="keyword">int</span> mini=getMiniVaule(a,i,a.length);</span><br><span class="line">           </span><br><span class="line">           <span class="comment">//把最小值放到有序数组的最后面</span></span><br><span class="line">           <span class="keyword">int</span> temp=a[mini];</span><br><span class="line">           a[mini]=a[i];</span><br><span class="line">           a[i]=temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//输出结果</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i: a)&#123;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//得到给定一段数组的最小值坐标</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getMiniVaule</span><span class="params">(<span class="keyword">int</span>[] b, <span class="keyword">int</span> start, <span class="keyword">int</span> tail)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> mini=start;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;tail;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(b[mini]&gt;b[i])&#123;</span><br><span class="line">                mini=i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> mini;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="一-选择排序"><a href="#一-选择排序" class="headerlink" title="一. 选择排序"></a>一. 选择排序</h3><p>每次找到数组中最大或者最小的元素，数组放在最前面，不断重复</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SelectedSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;arr.length;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[j]&lt;arr[i])&#123;</span><br><span class="line">				<span class="keyword">int</span> temp=arr[j];</span><br><span class="line">				arr[j]=arr[i];</span><br><span class="line">				arr[i]=temp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="动态规划找到子数组的最大和"><a href="#动态规划找到子数组的最大和" class="headerlink" title="动态规划找到子数组的最大和"></a>动态规划找到子数组的最大和</h3><p>​        得到给定一组数组的其中最大值的子数组的和，最大值为负直接返回0</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] a=<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,-<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>,-<span class="number">5</span>,<span class="number">7</span>,<span class="number">1</span>,-<span class="number">2</span>,-<span class="number">4</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> currentMaxSum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> MaxSum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">        currentMaxSum+=a[i];</span><br><span class="line">        <span class="keyword">if</span>(currentMaxSum&gt;MaxSum)&#123;</span><br><span class="line">            MaxSum=currentMaxSum;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(currentMaxSum&lt;<span class="number">0</span>)</span><br><span class="line">            currentMaxSum=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(MaxSum);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二-冒泡排序"><a href="#二-冒泡排序" class="headerlink" title="二. 冒泡排序"></a>二. 冒泡排序</h3><p>依次比较相邻的2个元素大小，把较大或者较小的一方往后移动</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;arr.length-<span class="number">1</span>-i;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>])&#123;</span><br><span class="line">				<span class="keyword">int</span> temp=arr[j];</span><br><span class="line">				arr[j]=arr[j+<span class="number">1</span>];</span><br><span class="line">				arr[j+<span class="number">1</span>]=temp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>​        把2个有序数组合并</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">13</span>, <span class="number">60</span>, <span class="number">80</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span>[] b = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">5</span>, <span class="number">9</span>, <span class="number">13</span>, <span class="number">60</span>, <span class="number">100</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span>[] c = <span class="keyword">new</span> <span class="keyword">int</span>[a.length + b.length];</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, pos = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &lt; b[j]) &#123;</span><br><span class="line">            c[pos++] = a[i++];</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            c[pos++] = b[j++];</span><br><span class="line">    &#125; <span class="keyword">while</span> (i &lt; a.length &amp;&amp; j &lt; b.length);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (i &lt; a.length) &#123;</span><br><span class="line">        c[pos++] = a[i++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (j &lt; b.length) &#123;</span><br><span class="line">        c[pos++] = b[j++];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> s : c) &#123;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三-归并排序"><a href="#三-归并排序" class="headerlink" title="三. 归并排序"></a>三. 归并排序</h3><p>​        把2个有序数组合并</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">MergeSort</span><span class="params">(<span class="keyword">int</span>[] a,<span class="keyword">int</span>[] b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[a.length + b.length];</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, pos = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &lt; b[j]) &#123;</span><br><span class="line">            arr[pos++] = a[i++];</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            arr[pos++] = b[j++];</span><br><span class="line">    &#125; <span class="keyword">while</span> (i &lt; a.length &amp;&amp; j &lt; b.length);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (i &lt; a.length) &#123;</span><br><span class="line">        arr[pos++] = a[i++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (j &lt; b.length) &#123;</span><br><span class="line">        arr[pos++] = b[j++];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+<p>插入排序（Insertion Sort）<br>希尔排序（Shell Sort）<br>快速排序（Quick Sort）<br>堆排序（Heap Sort）<br>计数排序（Counting Sort）<br>桶排序（Bucket Sort）<br>基数排序（Radix Sort）</p>
 
       
 
