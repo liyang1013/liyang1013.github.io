@@ -144,6 +144,242 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-GC原理和算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/02/GC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%97%E6%B3%95/">GC原理和算法</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/02/GC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%97%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-06-02T12:27:17.009Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/02/GC%E5%8E%9F%E7%90%86%E5%92%8C%E7%AE%97%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/02/Java%E7%AE%80%E4%BB%8B/">Java简介</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/02/Java%E7%AE%80%E4%BB%8B/" class="archive-article-date">
+  	<time datetime="2020-06-02T10:22:44.490Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一-Java语言的特点"><a href="#一-Java语言的特点" class="headerlink" title="一.  Java语言的特点"></a>一.  Java语言的特点</h3><h6 id="1-跨平台"><a href="#1-跨平台" class="headerlink" title="1.跨平台"></a>1.跨平台</h6><p>作为一种网络语言，Java编译器将Java源程序编译成一种与体 系结构无关的中间文件格式。只要有Java运行系统的机器都能 执行这种中间代码。从而使同一版本的应用程序可以运行在不 同的平台上。  </p>
+<p><img src="/img/image-20200602182630183.png" alt="image-20200602182630183"></p>
+<h6 id="2-半编译半解释"><a href="#2-半编译半解释" class="headerlink" title="2.半编译半解释"></a>2.半编译半解释</h6><p>源程序先编译成字节码，Java解释器(运行系统)能直接对 Java字节码进行解释执行。链接程序通常比编译程序所需 资源少。  </p>
+<p><img src="/img/image-20200602183030778.png" alt="image-20200602183030778"></p>
+<h6 id="3-简单"><a href="#3-简单" class="headerlink" title="3.简单"></a>3.简单</h6><p> Java是个精简的系统，无需强大的硬件环境便可以很好地 运行。Java的风格和语法类似于C++，因此，C++程序员可 以很快就掌握Java编程技术。Java摒弃了C++中容易引发 程序错误的地方，如多重继承、运算符重载、指针和内存 管理等，Java语言具有支持多线程、自动垃圾收集和采用 引用等特性。Java提供了丰富的类库，方便用户迅速掌握 Java。  </p>
+<h6 id="4-面向对象"><a href="#4-面向对象" class="headerlink" title="4.面向对象"></a>4.面向对象</h6><p>面向对象可以说是Java最基本的特性。Java语言的设计完 全是面向对象的，它不支持类似C语言那样的面向过程的 程序设计技术。所有的Java程序和applet均是对象，Java 支持静态和动态风格的代码继承及重用。 </p>
+<h6 id="5-分布式"><a href="#5-分布式" class="headerlink" title="5.分布式"></a>5.分布式</h6><p>Java包括一个支持HTTP和FTP等基于TCP/IP协议的子库。 因此，Java应用程序可凭借URL打开并访问网络上的对象， 就像访问本地文件一样简单方便。Java的分布性为实现在 分布环境尤其是Internet下实现动态内容提供了技术途径。 </p>
+<h6 id="6-健壮"><a href="#6-健壮" class="headerlink" title="6.健壮"></a>6.健壮</h6><p>–Java提供了自动垃圾收集机制来进行内存管理，并检测程序 对内存的访问，确定合法并不会引起任何问题后，才允许访 问。</p>
+<p> –Java还提供了异常处理机制用来检查编译及运行时可能出现 的问题，帮助程序员消除错误，防止系统崩溃 </p>
+<h6 id="7-安全"><a href="#7-安全" class="headerlink" title="7.安全"></a>7.安全</h6><p>作为网络语言，安全是非常重要的。Java的安全性可从两 个方面得到保证。一方面，在Java语言里，象指针和释放 内存等C++功能被删除，避免了非法内存操作。另一方面， 当Java用来创建浏览器时，语言功能和一类浏览器本身提 供的功能结合起来，使它更安全。Java语言在你的机器上 执行前，要经过很多次的测试。它经过代码校验，检查代 码段的格式，检测指针操作，对象操作是否过分以及试图 改变一个对象的类型。另外，Java拥有多个层次的互锁保 护措施，能有效地防止病毒的入侵和破坏行为的发生。  </p>
+<h6 id="8-多线程"><a href="#8-多线程" class="headerlink" title="8.多线程"></a>8.多线程</h6><p> 线程有时也称小进程，是一个大进程里分出来的小的独立 运行的基本单位。Java提供的多线程功能使得在一个程序 里可同时执行多个小任务，即同时进行不同的操作或处理 不同的事件。多线程带来的更大的好处是具有更好的网上 交互性能和实时控制性能，尤其是实现多媒体功能。 </p>
+<h3 id="二-环境搭建"><a href="#二-环境搭建" class="headerlink" title="二. 环境搭建"></a>二. 环境搭建</h3><h6 id="1-JDK-Java-Developement-Kit-——-Java开发工具包"><a href="#1-JDK-Java-Developement-Kit-——-Java开发工具包" class="headerlink" title="1. JDK (Java Developement Kit) —— Java开发工具包"></a>1. JDK (Java Developement Kit) —— Java开发工具包</h6><ul>
+<li>JRE</li>
+<li>java基础类库（rt.jar）</li>
+<li>java工具</li>
+</ul>
+<h6 id="2-JRE-Java-Runtime-Environment）—-Java运行环境"><a href="#2-JRE-Java-Runtime-Environment）—-Java运行环境" class="headerlink" title="2. JRE (Java Runtime Environment）— Java运行环境"></a>2. JRE (Java Runtime Environment）— Java运行环境</h6><ul>
+<li>JAVA虚拟机（Java Virtual Machine，JVM）</li>
+<li>一些标准的类库（Class Library） </li>
+</ul>
+<p><img src="/img/image-20200603091749594.png" alt="image-20200603091749594"></p>
+<h3 id="三-关键字"><a href="#三-关键字" class="headerlink" title="三. 关键字"></a>三. 关键字</h3><p><img src="/img/image-20200603093714849.png" alt="image-20200603093714849"></p>
+<h3 id="四-数据类型"><a href="#四-数据类型" class="headerlink" title="四. 数据类型"></a>四. 数据类型</h3><h6 id="1-数据类型分类："><a href="#1-数据类型分类：" class="headerlink" title="1. 数据类型分类："></a>1. 数据类型分类：</h6><ul>
+<li><p>基本数据类型：4类8种基本数据类型 </p>
+</li>
+<li><p>引用数据类型 </p>
+</li>
+</ul>
+<p><img src="/img/image-20200603094226719.png" alt="image-20200603094226719"></p>
+<h6 id="2-数据类型的转换"><a href="#2-数据类型的转换" class="headerlink" title="2.数据类型的转换"></a>2.数据类型的转换</h6><ul>
+<li><p>自动类型转换（隐式类型转换）：</p>
+<p>  ​        有多种类型的数据混合运算时，系统首先自动的将所有数据转换成 容量最大的那一种数据类型，然后进行计算 ，自动转换规则 boolean类型不可以转换为其他的数据类型 。整型、字符型、浮点型的数据在混合运算中相互转换。</p>
+</li>
+</ul>
+<p><img src="/img/image-20200603095004574.png" alt="image-20200603095004574"></p>
+<ul>
+<li><p>强制类型转换（显示类型转换）：</p>
+<p> ​         容量大的数据类型转换为容量小的数据类型时，需要使用强制类型转换。在强制类型转换过程中，源类型的值可能大于目标类型，因此 可能造成精度降低或溢出，使用时需注意。</p>
+</li>
+</ul>
+<h3 id="五-运算符"><a href="#五-运算符" class="headerlink" title="五 .运算符"></a>五 .运算符</h3><ul>
+<li>算术运算符： +、﹣、*、/、%、++、 – </li>
+</ul>
+<ul>
+<li>赋值运算符：=、+=、﹣=、*=、/=、%= </li>
+<li>比较运算符：&gt;、&lt;、&gt;=、 &lt;=、= =、!=、instanceof </li>
+<li>逻辑运算符：!、&amp;&amp;、|| </li>
+<li>位运算符： &amp;、|、^ 、 ~、&gt;&gt;、&lt;&lt;、&gt;&gt;&gt; </li>
+<li>条件运算符： ?： </li>
+</ul>
+<h3 id="六-面向对象编程（Object-Oriented-Programming-）"><a href="#六-面向对象编程（Object-Oriented-Programming-）" class="headerlink" title="六. 面向对象编程（Object-Oriented Programming ）"></a>六. 面向对象编程（Object-Oriented Programming ）</h3><h6 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h6><p>从现实世界中客观存在的事物出发来构造软件系统，并在系统构造中尽可能运用人类的自然思维方式，强调直接以 问题域中的事物为中心来思考问题，认识问题，并根据这 些事物的本质特点，把它们抽象地表示为系统中的对象， 作为系统的基本构成单位。面向对象解决问题的思路：通 常是把构成问题域的事务分解成各个对象，给对象赋予相 应的属性和行为，通过多个对象的相互协调来解决问题。 建立对象的目的不是为了完成一个步骤，而是为了描叙某 个事物在整个解决问题的步骤中的行为 。</p>
+<p><img src="/img/image-20200603100357651.png" alt="image-20200603100357651"></p>
+<ul>
+<li><p>抽象（abstract）： </p>
+<p>  ​    从事物中舍弃个别的非本质特征，抽取共同的本质特征 </p>
+<p>  ​    只考虑与问题域相关的信息，而忽略与问题域不相关的部分 </p>
+</li>
+<li><p>对象（object）：</p>
+<p>  ​    是系统中用来描述客观事物的一个实体。 可以是有形的，也可以是无形的</p>
+<p>  ​    对象是构成世界的一个独立单位 </p>
+<p>  ​    具有自己的静态结构（属性）和动态行为（方法）</p>
+<p>  ​    每个对象有自己的唯一标识 </p>
+</li>
+<li><p>类（class）： </p>
+<p> ​     类是一组具有相同属性和行为的对象的抽象，类的作用是用 来创建对象，对象是类的一个实例 </p>
+<p> 类和对象的关系 ：</p>
+<p> ​     每一个类在某一时刻都有零个或更多的实例， 类是生成对象的模板 </p>
+<p> ​    一个类定义了使用哪些数据来描述属性，每一个对象都有相应的属性值数据，一个类通过一系列方法来定义行为，这些方法能在每个对象中被激活 </p>
+</li>
+</ul>
+<h6 id="2-特征"><a href="#2-特征" class="headerlink" title="2. 特征"></a>2. 特征</h6><ul>
+<li><p>封装（encapsulation）： </p>
+<p> ​    把对象的属性和行为结合在一个独立的系统单位内部 ，尽可能隐蔽对象的内部细节，只向外部提供接口，降低对象间的耦合度。</p>
+<p> ​     封装的重要意义： </p>
+<p> ​             使对象能够集中而完整地描述并对应一个具体事物 ，体现了事物的相对独立性，使对象外部不能随意存取 对象的内部数据 。</p>
+</li>
+<li><p>继承（inheritance）：</p>
+<p> ​        继承性是子类自动共享父类属性和方法的机制 ，在定义和实现一个类的时候，可以在一个已经存在的类的基础之上来进行，把这个已经存在的类所定义的内容作为自己的内容，并加入自己若干新的内容 。</p>
+<p> ​        继承简化了人们对事物的认识和描述，有益于软件复用， 是OO技术提高软件开发效率的重要原因之一 ，是类之间的一种关系，一般类与特殊类之间的关系。</p>
+</li>
+<li><p>多态（polymorphism）： </p>
+<p>  ​        指同一个命名可具有不同的语义，OO方法中，常指在一般类中定义的属性或方法被特殊类继承之后，可以具有不同的数据类型或表现出不同的行为， 对于子类，可用不同的方法替代实现父类的服务的方法 。</p>
+</li>
+</ul>
+<h6 id="3-访问修饰符权限"><a href="#3-访问修饰符权限" class="headerlink" title="3. 访问修饰符权限"></a>3. 访问修饰符权限</h6><p><img src="/img/image-20200603102411209.png" alt="image-20200603102411209"></p>
+<h6 id="4-方法的重写（rewrite）"><a href="#4-方法的重写（rewrite）" class="headerlink" title="4. 方法的重写（rewrite）"></a>4. 方法的重写（rewrite）</h6><ul>
+<li>对从父类中继承来的方法进行改造</li>
+<li>在子类继承父类时发生 </li>
+<li>方法覆盖的规则 ：<ul>
+<li>相同的方法名 </li>
+<li>相同的参数列表（参数数量、参数类型、参数顺序都要相同）</li>
+<li>相同的返回值类型 </li>
+<li>子类覆盖方法的访问权限要不小于父类中被覆盖方法的访问权限 </li>
+</ul>
+</li>
+</ul>
+<h6 id="5-引用数据类型的转换"><a href="#5-引用数据类型的转换" class="headerlink" title="5.引用数据类型的转换"></a>5.引用数据类型的转换</h6><ul>
+<li>上溯造型 ：<ul>
+<li>向上转型（Upcasting）— 子类转换为父类，自动转换</li>
+<li>向上转换损失了子类新扩展的属性和方法，仅可以使用从父类 中继承的属性和方法 </li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>下溯造型：</p>
+<ul>
+<li>向下转型（Downcasting）：强制转换 </li>
+<li>将父类对象显示的转换成子类类型</li>
+<li>曾经向上转换过的对象，才能再向下转换。对象不允许不经过 上溯造型而直接下溯造型。</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/02/Java%E7%AE%80%E4%BB%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-类和对象的加载过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -813,170 +1049,10 @@
 
 
   
-    <article id="post-ShadowsocksR(SSR)一键安装脚本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/ShadowsocksR(SSR)%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/">ShadowsocksR(SSR)一键安装脚本</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/20/ShadowsocksR(SSR)%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/" class="archive-article-date">
-  	<time datetime="2020-04-20T14:42:31.953Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>简介:本文主要是搬运秋水冰逸的一键SSR脚本，以交流学习为主。</p>
-<h3 id="脚本适用环境"><a href="#脚本适用环境" class="headerlink" title="脚本适用环境"></a>脚本适用环境</h3><p>系统支持：CentOS 6+，Debian 7+，Ubuntu 12+<br>内存要求：≥128M</p>
-<h3 id="关于本脚"><a href="#关于本脚" class="headerlink" title="关于本脚"></a>关于本脚</h3><p>1、一键安装 Shadowsocks-Python， ShadowsocksR， Shadowsocks-Go， Shadowsocks-libev 版（四选一）服务端；<br>2、各版本的启动脚本及配置文件名不再重合；<br>3、每次运行可安装一种版本；<br>4、支持以多次运行来安装多个版本，且各个版本可以共存（注意端口号需设成不同）；<br>5、若已安装多个版本，则卸载时也需多次运行（每次卸载一种）；</p>
-<h3 id="默认配置"><a href="#默认配置" class="headerlink" title="默认配置"></a><strong>默认配置</strong></h3><p>服务器端口：自由设定（如不设定，默认从 9000-19999 之间随机生成）<br>密码：自己设定（如不设定，默认为 <a href="http://teddysun.com/" target="_blank" rel="noopener">teddysun.com</a>）<br>加密方式：自己设定（如不设定，Python 和 libev 版默认为 aes-256-gcm，R 和 Go 版默认为 aes-256-cfb）<br>协议（protocol）：自己设定（如不设定，默认为 origin）（仅限 ShadowsocksR 版）<br>混淆（obfs）：自己设定（如不设定，默认为 plain）（仅限 ShadowsocksR 版）<br>备注：脚本默认创建单用户配置文件，如需配置多用户，请手动修改相应的配置文件后重启即可。</p>
-<h3 id="配置方法："><a href="#配置方法：" class="headerlink" title="配置方法："></a>配置方法：</h3><p>开启<a href="https://github.com/liyang1013/liyang1013.github.io/blob/master/files/bbr.sh" target="_blank" rel="noopener">BBR</a>加速</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</span><br><span class="line">chmod +x bbr.sh</span><br><span class="line">./bbr.sh</span><br></pre></td></tr></table></figure>
-
-<p>安装<a href="https://github.com/liyang1013/liyang1013.github.io/blob/master/files/shadowsocks-all.sh" target="_blank" rel="noopener">SSR</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</span><br><span class="line">chmod +x shadowsocks-all.sh</span><br><span class="line">./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log</span><br></pre></td></tr></table></figure>
-
-<p>卸载</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./shadowsocks-all.sh uninstall</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a><strong>启动脚本</strong></h3><p>启动脚本后面的参数含义，从左至右依次为：启动，停止，重启，查看状态。</p>
-<p>Shadowsocks-Python 版：<code>/etc/init.d/shadowsocks-python start | stop | restart | status</code></p>
-<p>ShadowsocksR 版：<code>/etc/init.d/shadowsocks-r start | stop | restart | status</code></p>
-<p>Shadowsocks-Go 版：<code>/etc/init.d/shadowsocks-go start | stop | restart | status</code></p>
-<p>Shadowsocks-libev 版：<code>/etc/init.d/shadowsocks-libev start | stop | restart | status</code></p>
-<h3 id="各版本默认配置文件"><a href="#各版本默认配置文件" class="headerlink" title="各版本默认配置文件"></a><strong>各版本默认配置文件</strong></h3><p>Shadowsocks-Python 版：/etc/shadowsocks-python/config.json</p>
-<p>ShadowsocksR 版：/etc/shadowsocks-r/config.json</p>
-<p>Shadowsocks-Go 版：/etc/shadowsocks-go/config.json</p>
-<p>Shadowsocks-libev 版：/etc/shadowsocks-libev/config.json</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/ShadowsocksR(SSR)%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-HTC Pie降级Oreo教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/HTC%20Pie%E9%99%8D%E7%BA%A7Oreo%E6%95%99%E7%A8%8B/">HTC Pie降级Oreo教程</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/20/HTC%20Pie%E9%99%8D%E7%BA%A7Oreo%E6%95%99%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-04-20T04:32:37.264Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​        前不久入手了一款HTC U11 Plus的港版工程机，由于携带了大量的404全家桶，墙内体验非常糟糕，于是想着刷个国行系统，但是HTC社区倒了😭，这台港版系统是9.0的，国行RUU找不到比这太机子还高的版本号了，无奈只能先降级+刷国行RUU。</p>
-<p>​        一般降级操作就是手机连接电脑打开cmd运行<code>adb pull /dev/block/sde1</code>得到sde1这个文件，用文本编辑器打开后可以看到一行数字，也就是当前的版本号，只要把它改成要刷入的RUU相同或者更低的版本就行了，然后再用cmd 运行<code>adb push sde1 /dev/block/</code>重新把改好的sde1文件放回，进入Download模式，会自动读取对应机器的型号名的Zip文件，按音量+键即可开始自动刷写。</p>
-<p>​        可是从Pie开始这个方法就生效了，我改完CID，MID之后，直接刷国行RUU报了个错误，于是在xda找到了大佬的操作，并分享给大家。这个方法是通用的，只要是HTC Pie的系统降级都可以用。</p>
-<h3 id="一-开始前准备："><a href="#一-开始前准备：" class="headerlink" title="一.开始前准备："></a>一.开始前准备：</h3><p>1、HTC系列手机，系统版本Pie</p>
-<p>2、确保手机已soff</p>
-<p>3、电脑已正确安装驱动</p>
-<p>4、对应Oreo的RUU包</p>
-<p>5、<a href="https://developer.android.google.cn/studio/releases/platform-tools" target="_blank" rel="noopener">Android platform tools</a></p>
-<p>6、第三方<a href="https://forum.xda-developers.com/htc-u11/development/unofficial-htc-u11-twrp-recovery-t3706264" target="_blank" rel="noopener">Recovery</a></p>
-<p>7、<a href="https://github.com/liyang1013/liyang1013.github.io/blob/master/files/HTC-RUU_Decrypt_Tool_3.6.8-WINDOWS64.zip" target="_blank" rel="noopener">RUU解密工具</a></p>
-<p>8、<a href="https://androidfilehost.com/?fid=673791459329065690" target="_blank" rel="noopener">Batch刷机工具</a></p>
-<h3 id="二-安装驱动"><a href="#二-安装驱动" class="headerlink" title="二.安装驱动"></a>二.安装驱动</h3><p>​        安装驱动软件,在Android platform tools里打开cmd窗口,输入<code>adb devices</code>看到设备号就代表驱动已正确安装。</p>
-<h3 id="三-刷入第三方Recovery"><a href="#三-刷入第三方Recovery" class="headerlink" title="三.刷入第三方Recovery"></a>三.刷入第三方Recovery</h3><p>​        可以去twrp官网下载对应机器的recovery,或者用其他人修改的一些recovery,在上一步的基础上cmd运行<code>adb reboot to download</code>重启到Download模式后在运行<code>fastboot falsh recovery ${recovery.img}</code>这里recovery.img代表绝对路径,也可以直接把recovery拖进cmd窗口。</p>
-<h3 id="四-擦除版本信息"><a href="#四-擦除版本信息" class="headerlink" title="四.擦除版本信息"></a>四.擦除版本信息</h3><p>​        进入recovery后cmd运行<code>adb shell dd if=/dev/zero of=/dev/block/bootdevice/by-name/misc bs=1 seek=2208 count=16</code>擦除版本信息,重启进入Download模式，输入<code>fastboot getvar all</code>可查看手机的所有信息，其中关于版本号的应该为空。</p>
-<h3 id="五-解密RUU"><a href="#五-解密RUU" class="headerlink" title="五.解密RUU"></a>五.解密RUU</h3><p>​        运行RUU_Decrypt_Tool.exe,把RUU拖在上面,他会自动打开cmd窗口选择Y/N的时候一路默认直接回车即可,然后就是等待解压的过程,最后会生成一个OUT_设备名_版本号的文件夹。</p>
-<h3 id="六-降级刷RUU"><a href="#六-降级刷RUU" class="headerlink" title="六.降级刷RUU"></a>六.降级刷RUU</h3><p>​        安装BatchTool.exe,把要刷入的RUU包改名为rom.zip并放入Batch的默认目录Android/com文件夹下,从上面解密的OUT文件夹中找到firmware/hoss_signed.img,然后手机进入bootloader模式,一定要在Android/com目录下打开cmd运行<code>htc_fastboot flash hosd ${hosd_signed.img}</code>, 等待刷入完成，再输入<code>htc_fastboot oem rebootRUU</code>,重启到RUU模式再输入<code>htc_fastboot flash zip rom.zip</code>等待刷写完成重启,至此完成降级操作。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/HTC%20Pie%E9%99%8D%E7%BA%A7Oreo%E6%95%99%E7%A8%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
