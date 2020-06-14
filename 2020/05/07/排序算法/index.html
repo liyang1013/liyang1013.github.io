@@ -16,7 +16,7 @@
 <meta property="og:description" content="一. 选择排序每次找到数组中最大或者最小的元素，数组放在最前面，不断重复 1234567891011public void SelectedSort(int[] arr)&amp;#123;	for(int i&#x3D;0;i&lt;arr.length;i++)&amp;#123;		for(int j&#x3D;i+1;j&lt;arr.length;j++)&amp;#123;			if(arr[j]&lt;arr[i])&amp;#123">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-07T03:39:44.314Z">
-<meta property="article:modified_time" content="2020-06-01T10:28:17.765Z">
+<meta property="article:modified_time" content="2020-06-12T08:02:55.072Z">
 <meta property="article:author" content="Li Yang">
 <meta name="twitter:card" content="summary">
   
@@ -179,8 +179,7 @@
 <h3 id="三-归并排序"><a href="#三-归并排序" class="headerlink" title="三. 归并排序"></a>三. 归并排序</h3><p>​        把2个有序数组合并</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">MergeSort</span><span class="params">(<span class="keyword">int</span>[] a,<span class="keyword">int</span>[] b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[a.length + b.length];</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, pos = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &lt; b[j]) &#123;</span><br><span class="line">            arr[pos++] = a[i++];</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            arr[pos++] = b[j++];</span><br><span class="line">    &#125; <span class="keyword">while</span> (i &lt; a.length &amp;&amp; j &lt; b.length);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (i &lt; a.length) &#123;</span><br><span class="line">        arr[pos++] = a[i++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (j &lt; b.length) &#123;</span><br><span class="line">        arr[pos++] = b[j++];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-<p>插入排序（Insertion Sort）<br>希尔排序（Shell Sort）<br>快速排序（Quick Sort）<br>堆排序（Heap Sort）<br>计数排序（Counting Sort）<br>桶排序（Bucket Sort）<br>基数排序（Radix Sort）</p>
+<p>插入排序（Insertion Sort）<br>        希尔排序（Shell Sort）<br>        快速排序（Quick Sort）<br>        堆排序（Heap Sort）<br>        计数排序（Counting Sort）<br>        桶排序（Bucket Sort）<br>        基数排序（Radix Sort）</p>
 
       
 
@@ -253,11 +252,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/10/%E5%86%99%E8%BF%87%E7%9A%84Bug/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/05/20/frp%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          写过的Bug
+          frp内网穿透
         
       </div>
     </a>
