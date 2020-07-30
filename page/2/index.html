@@ -6,17 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>类和对象的加载过程 | Li Yang&#39;s Blog</title>
+  <title>Li Yang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一. Loading Of Class1、 启动JVM，开始分配内存空间；  2、 开始加载*.class文件，加载到方法区（JDK 1.8之后在元空间）中，在加载的过程中静态的内容要进入静态区中； 3、 在开始运行main方法，这时JVM就会把main调用到栈中运行，开始从方法的第一行往下运行； 4、 在main方法中new this()，JVM就会在方法区（JDK 1.8之后在元空间）中查找有">
-<meta property="og:type" content="article">
-<meta property="og:title" content="类和对象的加载过程">
-<meta property="og:url" content="http://yoursite.com/2020/06/02/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Li Yang&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Li Yang&#39;s Blog">
-<meta property="og:description" content="一. Loading Of Class1、 启动JVM，开始分配内存空间；  2、 开始加载*.class文件，加载到方法区（JDK 1.8之后在元空间）中，在加载的过程中静态的内容要进入静态区中； 3、 在开始运行main方法，这时JVM就会把main调用到栈中运行，开始从方法的第一行往下运行； 4、 在main方法中new this()，JVM就会在方法区（JDK 1.8之后在元空间）中查找有">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-06-02T07:54:35.628Z">
-<meta property="article:modified_time" content="2020-06-02T09:11:24.766Z">
 <meta property="article:author" content="Li Yang">
 <meta name="twitter:card" content="summary">
   
@@ -146,46 +142,44 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-类和对象的加载过程" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-HTC Pie降级Oreo教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      类和对象的加载过程
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/20/HTC%20Pie%E9%99%8D%E7%BA%A7Oreo%E6%95%99%E7%A8%8B/">HTC Pie降级Oreo教程</a>
     </h1>
   
 
         
-        <a href="/2020/06/02/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-06-02T07:54:35.628Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
+        <a href="/2020/04/20/HTC%20Pie%E9%99%8D%E7%BA%A7Oreo%E6%95%99%E7%A8%8B/" class="archive-article-date">
+  	<time datetime="2020-04-20T04:32:37.264Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一-Loading-Of-Class"><a href="#一-Loading-Of-Class" class="headerlink" title="一. Loading Of Class"></a>一. Loading Of Class</h3><p><strong>1、</strong> 启动JVM，开始分配内存空间； </p>
-<p><strong>2、</strong> 开始加载*.class文件，加载到方法区（JDK 1.8之后在元空间）中，在加载的过程中静态的内容要进入静态区中；</p>
-<p><strong>3、</strong> 在开始运行main方法，这时JVM就会把main调用到栈中运行，开始从方法的第一行往下运行；</p>
-<p><strong>4、</strong> 在main方法中new this()，JVM就会在方法区（JDK 1.8之后在元空间）中查找有没有this.class文件，如果没有就加载this.class文件，并且this继承supper类，所以也要查找有没有supper类，如果没有也要加载supper.class文件。</p>
-<p><strong>5、</strong>this .class和supper.class中的所有的非静态内容会加载到非静态的区域中，而静态的内容会加载到静态区中。静态内容（静态变量，静态代码块，静态方法）按照书写顺序加载。</p>
-<p>（类的加载只会执行一次。下次再创建对象时，可以直接在方法区中获取class信息。）</p>
-<p><strong>6、</strong> 开始给静态区中的所有静态的成员变量开始默认初始化。默认初始化完成之后，开始给所有的静态成员变量显示初始化。</p>
-<p><strong>7、</strong> 所有静态成员变量显示初始化完成之后，开始执行静态的代码块。先执行父类的静态代码块，再执行子类的静态代码块。</p>
-<p><strong>静态代码块是在类加载的时候执行的，类的加载只会执行一次所以静态代码块也只会执行一次；非静态代码块和构造函数中的代码是在对象创建的时候执行的，因此对象创建(new)一次，它们就会执行一次。</strong></p>
-<p><strong>8、</strong> 这时supper.class文件 和 this.class文件加载完成。</p>
-<h3 id="二-Loading-Of-Object"><a href="#二-Loading-Of-Object" class="headerlink" title="二. Loading Of Object"></a>二. Loading Of Object</h3><p><strong>9、</strong> 开始在堆中创建this对象。给this对象分配内存空间，指向某片内存地址。</p>
-<p><strong>10、</strong>开始对类中的的非静态的成员变量开始默认初始化。</p>
-<p><strong>11、</strong>开始加载对应的构造方法，执行隐式三步：</p>
-<ul>
-<li>父类构造函数supper();</li>
-<li>非静态成员变量的显示初始化</li>
-<li>执行非静态构造代码块</li>
-</ul>
-<p><strong>12、</strong>执行本类中的构造函数。</p>
-<p><strong>13、</strong>对象创建完成，把内存的地址返回。</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​        前不久入手了一款HTC U11 Plus的港版工程机，由于携带了大量的404全家桶，墙内体验非常糟糕，于是想着刷个国行系统，但是HTC社区倒了😭，这台港版系统是9.0的，国行RUU找不到比这太机子还高的版本号了，无奈只能先降级+刷国行RUU。</p>
+<p>​        一般降级操作就是手机连接电脑打开cmd运行<code>adb pull /dev/block/sde1</code>得到sde1这个文件，用文本编辑器打开后可以看到一行数字，也就是当前的版本号，只要把它改成要刷入的RUU相同或者更低的版本就行了，然后再用cmd 运行<code>adb push sde1 /dev/block/</code>重新把改好的sde1文件放回，进入Download模式，会自动读取对应机器的型号名的Zip文件，按音量+键即可开始自动刷写。</p>
+<p>​        可是从Pie开始这个方法就生效了，我改完CID，MID之后，直接刷国行RUU报了个错误，于是在xda找到了大佬的操作，并分享给大家。这个方法是通用的，只要是HTC Pie的系统降级都可以用。</p>
+<h3 id="一-开始前准备："><a href="#一-开始前准备：" class="headerlink" title="一.开始前准备："></a>一.开始前准备：</h3><p>1、HTC系列手机，系统版本Pie</p>
+<p>2、确保手机已soff</p>
+<p>3、电脑已正确安装驱动</p>
+<p>4、对应Oreo的RUU包</p>
+<p>5、<a href="https://developer.android.google.cn/studio/releases/platform-tools" target="_blank" rel="noopener">Android platform tools</a></p>
+<p>6、第三方<a href="https://forum.xda-developers.com/htc-u11/development/unofficial-htc-u11-twrp-recovery-t3706264" target="_blank" rel="noopener">Recovery</a></p>
+<p>7、<a href="https://github.com/liyang1013/liyang1013.github.io/blob/master/files/HTC-RUU_Decrypt_Tool_3.6.8-WINDOWS64.zip" target="_blank" rel="noopener">RUU解密工具</a></p>
+<p>8、<a href="https://androidfilehost.com/?fid=673791459329065690" target="_blank" rel="noopener">Batch刷机工具</a></p>
+<h3 id="二-安装驱动"><a href="#二-安装驱动" class="headerlink" title="二.安装驱动"></a>二.安装驱动</h3><p>​        安装驱动软件,在Android platform tools里打开cmd窗口,输入<code>adb devices</code>看到设备号就代表驱动已正确安装。</p>
+<h3 id="三-刷入第三方Recovery"><a href="#三-刷入第三方Recovery" class="headerlink" title="三.刷入第三方Recovery"></a>三.刷入第三方Recovery</h3><p>​        可以去twrp官网下载对应机器的recovery,或者用其他人修改的一些recovery,在上一步的基础上cmd运行<code>adb reboot to download</code>重启到Download模式后在运行<code>fastboot falsh recovery ${recovery.img}</code>这里recovery.img代表绝对路径,也可以直接把recovery拖进cmd窗口。</p>
+<h3 id="四-擦除版本信息"><a href="#四-擦除版本信息" class="headerlink" title="四.擦除版本信息"></a>四.擦除版本信息</h3><p>​        进入recovery后cmd运行<code>adb shell dd if=/dev/zero of=/dev/block/bootdevice/by-name/misc bs=1 seek=2208 count=16</code>擦除版本信息,重启进入Download模式，输入<code>fastboot getvar all</code>可查看手机的所有信息，其中关于版本号的应该为空。</p>
+<h3 id="五-解密RUU"><a href="#五-解密RUU" class="headerlink" title="五.解密RUU"></a>五.解密RUU</h3><p>​        运行RUU_Decrypt_Tool.exe,把RUU拖在上面,他会自动打开cmd窗口选择Y/N的时候一路默认直接回车即可,然后就是等待解压的过程,最后会生成一个OUT_设备名_版本号的文件夹。</p>
+<h3 id="六-降级刷RUU"><a href="#六-降级刷RUU" class="headerlink" title="六.降级刷RUU"></a>六.降级刷RUU</h3><p>​        安装BatchTool.exe,把要刷入的RUU包改名为rom.zip并放入Batch的默认目录Android/com文件夹下,从上面解密的OUT文件夹中找到firmware/hoss_signed.img,然后手机进入bootloader模式,一定要在Android/com目录下打开cmd运行<code>htc_fastboot flash hosd ${hosd_signed.img}</code>, 等待刷入完成，再输入<code>htc_fastboot oem rebootRUU</code>,重启到RUU模式再输入<code>htc_fastboot flash zip rom.zip</code>等待刷写完成重启,至此完成降级操作。</p>
 
       
 
@@ -197,84 +191,16 @@
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/20/HTC%20Pie%E9%99%8D%E7%BA%A7Oreo%E6%95%99%E7%A8%8B/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/02/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/07/03/GC/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          GC
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/06/01/JVM%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JVM内存分配</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -294,14 +220,12 @@
 
 
 
-  
-  
-  
 
   
-
   
-
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -324,8 +248,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
