@@ -165,7 +165,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="Java-线程安全"><a href="#Java-线程安全" class="headerlink" title="Java 线程安全"></a><strong>Java 线程安全</strong></h3><ul>
-<li><h5 id="Java指令重排序："><a href="#Java指令重排序：" class="headerlink" title="Java指令重排序："></a>Java指令重排序：</h5><h6 id="多线程环境中-程序的执行可能因为指令重排而出现乱序，产生线程安全问题"><a href="#多线程环境中-程序的执行可能因为指令重排而出现乱序，产生线程安全问题" class="headerlink" title="多线程环境中, 程序的执行可能因为指令重排而出现乱序，产生线程安全问题"></a>多线程环境中, 程序的执行可能因为指令重排而出现乱序，产生线程安全问题</h6><p><img src="%5Cimg%5Cchongpaixun.png" alt="image-20200907170850474"></p>
+<li><h5 id="Java指令重排序："><a href="#Java指令重排序：" class="headerlink" title="Java指令重排序："></a>Java指令重排序：</h5><h6 id="多线程环境中-程序的执行可能因为指令重排而出现乱序，产生线程安全问题"><a href="#多线程环境中-程序的执行可能因为指令重排而出现乱序，产生线程安全问题" class="headerlink" title="多线程环境中, 程序的执行可能因为指令重排而出现乱序，产生线程安全问题"></a>多线程环境中, 程序的执行可能因为指令重排而出现乱序，产生线程安全问题</h6><img src="/img/chongpaixun.png" alt="image-20200907170850474" style="zoom:61.8%;" />
 </li>
 <li><h5 id="Java指令执行过程："><a href="#Java指令执行过程：" class="headerlink" title="Java指令执行过程："></a>Java指令执行过程：</h5><ol>
 <li><h6 id="将变量从主存复制到线程的工作内存中"><a href="#将变量从主存复制到线程的工作内存中" class="headerlink" title="将变量从主存复制到线程的工作内存中"></a>将变量从主存复制到线程的工作内存中</h6></li>
@@ -176,7 +176,10 @@
 </li>
 </ul>
 <h6 id="这4步都是原子性的，但组合到一起，多线程操作时不能保证整体原子性，可能会产生线程安全问题。"><a href="#这4步都是原子性的，但组合到一起，多线程操作时不能保证整体原子性，可能会产生线程安全问题。" class="headerlink" title="这4步都是原子性的，但组合到一起，多线程操作时不能保证整体原子性，可能会产生线程安全问题。"></a>这4步都是原子性的，但组合到一起，多线程操作时不能保证整体原子性，可能会产生线程安全问题。</h6><p>​        </p>
-<p><img src="%5Cimg%5Cjavazhiling.png" alt="image-20200907170850474"></p>
+<img src="/img/javazhiling.png" alt="image-20200907170850474" style="zoom:61.8%;" />
+
+
+
 <ul>
 <li><h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><p>  ​        一个线程修改的状态对其他线程是可见的，一个线程修改的结果，另一个线程马上就能看到。当一个线程修改自己的工作内存的时候，在写到主存之前，其他线程可能就读取了未修改前的值，造成线程的不可见性。</p>
 <p>  ​        volatile、synchronized 和 final 实现可见性。</p>
