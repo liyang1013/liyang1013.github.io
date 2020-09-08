@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>类和对象的加载过程 | Li Yang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一. Loading Of Class1、 启动JVM，开始分配内存空间；  2、 开始加载*.class文件，加载到方法区（JDK 1.8之后在元空间）中，在加载的过程中静态的内容要进入静态区中； 3、 在开始运行main方法，这时JVM就会把main调用到栈中运行，开始从方法的第一行往下运行； 4、 在main方法中new this()，JVM就会在方法区（JDK 1.8之后在元空间）中查找有">
+  <meta name="description" content="一. 类加载过程 启动JVM，开始分配内存空间  JVM会先去方法区中找有没有相应类的.class存在。有就直接使用；没有就把相关类的.class加载到方法区  在.class加载到方法区时，会分为两部分加载：先加载非静态内容，再加载静态内容  加载非静态内容：把.class中的所有非静态内容加载到方法区下的非静态区域内  加载静态内容：  把.class中的所有静态内容加载到方法区下的静态区域内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类和对象的加载过程">
 <meta property="og:url" content="http://yoursite.com/2020/06/02/%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Li Yang&#39;s Blog">
-<meta property="og:description" content="一. Loading Of Class1、 启动JVM，开始分配内存空间；  2、 开始加载*.class文件，加载到方法区（JDK 1.8之后在元空间）中，在加载的过程中静态的内容要进入静态区中； 3、 在开始运行main方法，这时JVM就会把main调用到栈中运行，开始从方法的第一行往下运行； 4、 在main方法中new this()，JVM就会在方法区（JDK 1.8之后在元空间）中查找有">
+<meta property="og:description" content="一. 类加载过程 启动JVM，开始分配内存空间  JVM会先去方法区中找有没有相应类的.class存在。有就直接使用；没有就把相关类的.class加载到方法区  在.class加载到方法区时，会分为两部分加载：先加载非静态内容，再加载静态内容  加载非静态内容：把.class中的所有非静态内容加载到方法区下的非静态区域内  加载静态内容：  把.class中的所有静态内容加载到方法区下的静态区域内">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-02T07:54:35.628Z">
-<meta property="article:modified_time" content="2020-06-02T09:11:24.766Z">
+<meta property="article:modified_time" content="2020-09-08T07:20:47.588Z">
 <meta property="article:author" content="Li Yang">
 <meta name="twitter:card" content="summary">
   
@@ -166,26 +166,53 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一-Loading-Of-Class"><a href="#一-Loading-Of-Class" class="headerlink" title="一. Loading Of Class"></a>一. Loading Of Class</h3><p><strong>1、</strong> 启动JVM，开始分配内存空间； </p>
-<p><strong>2、</strong> 开始加载*.class文件，加载到方法区（JDK 1.8之后在元空间）中，在加载的过程中静态的内容要进入静态区中；</p>
-<p><strong>3、</strong> 在开始运行main方法，这时JVM就会把main调用到栈中运行，开始从方法的第一行往下运行；</p>
-<p><strong>4、</strong> 在main方法中new this()，JVM就会在方法区（JDK 1.8之后在元空间）中查找有没有this.class文件，如果没有就加载this.class文件，并且this继承supper类，所以也要查找有没有supper类，如果没有也要加载supper.class文件。</p>
-<p><strong>5、</strong>this .class和supper.class中的所有的非静态内容会加载到非静态的区域中，而静态的内容会加载到静态区中。静态内容（静态变量，静态代码块，静态方法）按照书写顺序加载。</p>
-<p>（类的加载只会执行一次。下次再创建对象时，可以直接在方法区中获取class信息。）</p>
-<p><strong>6、</strong> 开始给静态区中的所有静态的成员变量开始默认初始化。默认初始化完成之后，开始给所有的静态成员变量显示初始化。</p>
-<p><strong>7、</strong> 所有静态成员变量显示初始化完成之后，开始执行静态的代码块。先执行父类的静态代码块，再执行子类的静态代码块。</p>
+        <h3 id="一-类加载过程"><a href="#一-类加载过程" class="headerlink" title="一. 类加载过程"></a>一. <strong>类加载过程</strong></h3><ol>
+<li><p>启动JVM，开始分配内存空间</p>
+</li>
+<li><p>JVM会先去方法区中找有没有相应类的.class存在。有就直接使用；没有就把相关类的.class加载到方法区</p>
+</li>
+<li><p>在.class加载到方法区时，会分为两部分加载：先加载非静态内容，再加载静态内容</p>
+</li>
+<li><p>加载非静态内容：把.class中的所有非静态内容加载到方法区下的非静态区域内</p>
+</li>
+<li><p>加载静态内容：</p>
+<ol>
+<li>把.class中的所有静态内容加载到方法区下的静态区域内</li>
+<li>静态内容加载完成之后，对所有的静态变量进行默认初始化</li>
+<li>所有的静态变量默认初始化完成之后，再进行显式初始化</li>
+<li>当静态区域下的所有静态变量显式初始化完后，执行静态代码块</li>
+</ol>
+</li>
+<li><p>当静态区域下的静态代码块，执行完之后，整个类的加载就完成了。</p>
+</li>
+</ol>
 <p><strong>静态代码块是在类加载的时候执行的，类的加载只会执行一次所以静态代码块也只会执行一次；非静态代码块和构造函数中的代码是在对象创建的时候执行的，因此对象创建(new)一次，它们就会执行一次。</strong></p>
-<p><strong>8、</strong> 这时supper.class文件 和 this.class文件加载完成。</p>
-<h3 id="二-Loading-Of-Object"><a href="#二-Loading-Of-Object" class="headerlink" title="二. Loading Of Object"></a>二. Loading Of Object</h3><p><strong>9、</strong> 开始在堆中创建this对象。给this对象分配内存空间，指向某片内存地址。</p>
-<p><strong>10、</strong>开始对类中的的非静态的成员变量开始默认初始化。</p>
-<p><strong>11、</strong>开始加载对应的构造方法，执行隐式三步：</p>
+<h3 id="二-对象创建过程"><a href="#二-对象创建过程" class="headerlink" title="二. 对象创建过程"></a>二. <strong>对象创建过程</strong></h3><ol>
+<li><p>在堆内存中开辟一块空间</p>
+</li>
+<li><p>给开辟空间分配一个地址</p>
+</li>
+<li><p>把对象的所有非静态成员加载到所开辟的空间下</p>
+</li>
+<li><p>所有的非静态成员加载完成之后，对所有非静态成员变量进行默认初始化</p>
+</li>
+<li><p>所有非静态成员变量默认初始化完成之后，调用构造函数</p>
+</li>
+<li><p>在构造函数入栈执行时，分为两部分：先执行构造函数中的隐式三步，再执行构造函数中书写的代码</p>
+<ol>
+<li><p>隐式三步：</p>
 <ul>
-<li>父类构造函数supper();</li>
-<li>非静态成员变量的显示初始化</li>
-<li>执行非静态构造代码块</li>
+<li>执行super语句</li>
+<li>对开辟空间下的所有非静态成员变量进行显式初始化</li>
+<li>执行构造代码块</li>
 </ul>
-<p><strong>12、</strong>执行本类中的构造函数。</p>
-<p><strong>13、</strong>对象创建完成，把内存的地址返回。</p>
+<p>2 . 执行构造函数中书写的代码</p>
+</li>
+</ol>
+</li>
+<li><p>在整个构造函数执行完并弹栈后，把空间分配的地址赋值给一个引用对象</p>
+</li>
+</ol>
 
       
 
